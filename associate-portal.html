@@ -914,6 +914,192 @@
     // Initialize photo upload functionality
     setupPhotoUpload();
     displayCurrentPhoto();
+
+    // Associates Management System
+    class AssociatesManager {
+      constructor() {
+        this.storageKey = 'nexlify_associates';
+        this.init();
+      }
+
+      init() {
+        // Load existing associates or create default
+        if (!localStorage.getItem(this.storageKey)) {
+          this.loadDefaultAssociates();
+        }
+      }
+
+      async loadDefaultAssociates() {
+        try {
+          const response = await fetch('associates.json');
+          const defaultAssociates = await response.json();
+          localStorage.setItem(this.storageKey, JSON.stringify(defaultAssociates));
+        } catch (error) {
+          console.error('Error loading default associates:', error);
+          // Fallback to empty array
+          localStorage.setItem(this.storageKey, JSON.stringify([]));
+        }
+      }
+
+      getAllAssociates() {
+        try {
+          const associates = localStorage.getItem(this.storageKey);
+          return associates ? JSON.parse(associates) : [];
+        } catch (error) {
+          console.error('Error retrieving associates:', error);
+          return [];
+        }
+      }
+
+      saveAssociate(associateData) {
+        try {
+          const associates = this.getAllAssociates();
+          
+          // Check if associate already exists
+          const existingIndex = associates.findIndex(assoc => 
+            assoc.name === associateData.name || assoc.email === associateData.email
+          );
+
+          if (existingIndex !== -1) {
+            // Update existing associate
+            associates[existingIndex] = {
+              ...associates[existingIndex],
+              ...associateData,
+              lastUpdated: new Date().toISOString()
+            };
+          } else {
+            // Add new associate
+            associates.push({
+              ...associateData,
+              id: Date.now().toString(),
+              createdAt: new Date().toISOString(),
+              lastUpdated: new Date().toISOString()
+            });
+          }
+
+          localStorage.setItem(this.storageKey, JSON.stringify(associates));
+          return true;
+        } catch (error) {
+          console.error('Error saving associate:', error);
+          return false;
+        }
+      }
+    }
+
+    // Initialize Associates Manager
+    const associatesManager = new AssociatesManager();
+
+    // Enhanced form submission with real save functionality
+    document.getElementById('profileForm').removeEventListener('submit', arguments.callee);
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Collect form data
+      const formData = new FormData(this);
+      const associateData = {
+        name: formData.get('fullName'),
+        role: formData.get('jobTitle'),
+        bio: formData.get('bio'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        location: formData.get('location'),
+        department: formData.get('department'),
+        experience: formData.get('experience'),
+        linkedin: formData.get('linkedin'),
+        skills: currentUser.skills || [],
+        photo: currentUser.profileImage || null
+      };
+
+      // Add social media links if they exist
+      if (formData.get('whatsapp')) {
+        associateData.whatsapp = formData.get('whatsapp');
+      }
+      if (formData.get('twitter')) {
+        associateData.x = formData.get('twitter');
+      }
+
+      // Save to associates system
+      const saveSuccess = associatesManager.saveAssociate(associateData);
+      
+      if (saveSuccess) {
+        // Show success message
+        showAlert('✅ Profile saved successfully! Your information has been updated on the website.', 'success');
+        
+        // Update current user data
+        Object.assign(currentUser, associateData);
+        
+        // Update header and stats
+        loadUserData();
+        updateStats();
+        
+        // Trigger website updates
+        this.dispatchEvent(new CustomEvent('associateUpdated', { 
+          detail: associateData 
+        }));
+      } else {
+        showAlert('❌ Error saving profile. Please try again.', 'error');
+      }
+    });
+
+    // Helper function to show alerts
+    function showAlert(message, type = 'info') {
+      // Remove existing alerts
+      const existingAlert = document.querySelector('.save-alert');
+      if (existingAlert) {
+        existingAlert.remove();
+      }
+      
+      // Create new alert
+      const alertDiv = document.createElement('div');
+      alertDiv.className = `save-alert alert alert-${type}`;
+      alertDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        padding: 15px 25px;
+        border-radius: 8px;
+        color: white;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        opacity: 0;
+        transform: translateX(100px);
+        transition: all 0.3s ease;
+        max-width: 350px;
+      `;
+      
+      // Set background color based on type
+      if (type === 'success') {
+        alertDiv.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+      } else if (type === 'error') {
+        alertDiv.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+      } else {
+        alertDiv.style.background = 'linear-gradient(135deg, #3498db, #2980b9)';
+      }
+      
+      alertDiv.textContent = message;
+      document.body.appendChild(alertDiv);
+      
+      // Show the alert
+      setTimeout(() => {
+        alertDiv.style.opacity = '1';
+        alertDiv.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Hide and remove the alert after 5 seconds
+      setTimeout(() => {
+        alertDiv.style.opacity = '0';
+        alertDiv.style.transform = 'translateX(100px)';
+        setTimeout(() => {
+          if (alertDiv.parentNode) {
+            alertDiv.parentNode.removeChild(alertDiv);
+          }
+        }, 300);
+      }, 5000);
+    }
   </script>
+  
+  <!-- Load CV Storage System for integration -->
+  <script src="js/cv-storage.js"></script>
 </body>
 </html>
