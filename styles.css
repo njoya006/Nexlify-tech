@@ -962,6 +962,138 @@ body {
   .grid-4 {
     grid-template-columns: 1fr;
   }
+  
+  /* Enhanced CV Creator Mobile Styles */
+  .container {
+    padding: 10px !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .form-section {
+    margin-bottom: 20px;
+  }
+  
+  .cv-section-card {
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .cv-section-card h2 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    display: block;
+    font-weight: 600;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e1e8ed;
+    border-radius: 6px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(27, 160, 152, 0.1);
+  }
+  
+  .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  /* CV Preview Mobile */
+  .cv-preview-card {
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  
+  .cv-preview-header {
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+  
+  .cv-preview-content {
+    padding: 15px;
+    min-height: 400px;
+    background: white;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 5px !important;
+  }
+  
+  .cv-section-card {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .cv-section-card h2 {
+    font-size: 1.1em;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .cv-preview-content {
+    padding: 10px;
+    min-height: 300px;
+  }
+  
+  .cv-preview-header {
+    padding: 12px;
+    font-size: 1em;
+  }
+}
+
+/* Touch-friendly interactions for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover {
+    transform: none;
+  }
+  
+  .btn:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  .cv-section-card:hover {
+    transform: none;
+  }
+  
+  .cv-section-card:active {
+    transform: scale(0.99);
+    transition: transform 0.1s ease;
+  }
 }
 
 /* Scroll to top button */

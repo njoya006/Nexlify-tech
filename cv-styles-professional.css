@@ -427,3 +427,177 @@
 .save-status.info {
     background: linear-gradient(135deg, #3498db, #2980b9);
 }
+
+/* Enhanced Mobile Responsive Design */
+@media (max-width: 768px) {
+    /* CV Creator Form Improvements */
+    .container.grid.grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .form-section {
+        order: 1;
+    }
+    
+    .preview-section {
+        order: 2;
+    }
+    
+    /* CV Preview Card Mobile */
+    .cv-preview-card {
+        margin: 0 !important;
+        border-radius: 8px !important;
+    }
+    
+    .cv-document-professional {
+        grid-template-columns: 1fr !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+    
+    .cv-left-column, .cv-right-column {
+        padding: 20px !important;
+    }
+    
+    .cv-profile-photo {
+        width: 100px !important;
+        height: 100px !important;
+        margin: 0 auto 15px auto !important;
+    }
+    
+    .cv-name-left {
+        font-size: 1.5em !important;
+        text-align: center !important;
+    }
+    
+    .cv-title-left {
+        font-size: 1em !important;
+        text-align: center !important;
+    }
+    
+    /* Button Layout Mobile */
+    .text-center.mb-20 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        padding: 0 20px !important;
+    }
+    
+    .btn {
+        width: 100% !important;
+        padding: 15px 20px !important;
+        font-size: 1em !important;
+        border-radius: 8px !important;
+        text-align: center !important;
+        min-height: 50px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Save Status Mobile */
+    .save-status {
+        top: 10px !important;
+        right: 10px !important;
+        left: 10px !important;
+        padding: 12px 15px !important;
+        font-size: 0.9em !important;
+        text-align: center !important;
+        transform: translateY(-100px) !important;
+        border-radius: 6px !important;
+    }
+    
+    .save-status.show {
+        transform: translateY(0) !important;
+    }
+    
+    /* Form Fields Mobile */
+    .cv-section-card {
+        margin-bottom: 20px !important;
+        padding: 15px !important;
+        border-radius: 8px !important;
+    }
+    
+    .form-group {
+        margin-bottom: 15px !important;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 12px !important;
+        border-radius: 6px !important;
+    }
+    
+    .form-group textarea {
+        min-height: 100px !important;
+    }
+    
+    /* Header Mobile in Forms */
+    h1 {
+        font-size: 1.8em !important;
+        margin-bottom: 20px !important;
+        text-align: center !important;
+    }
+    
+    h2 {
+        font-size: 1.3em !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra Small Mobile Devices */
+    .container {
+        padding: 10px !important;
+    }
+    
+    .cv-section-card {
+        padding: 12px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .cv-preview-card {
+        padding: 10px !important;
+    }
+    
+    .cv-left-column, .cv-right-column {
+        padding: 15px !important;
+    }
+    
+    .cv-profile-photo {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    
+    .cv-name-left {
+        font-size: 1.3em !important;
+    }
+    
+    .cv-title-left {
+        font-size: 0.9em !important;
+    }
+    
+    .btn {
+        padding: 12px 15px !important;
+        font-size: 0.9em !important;
+        min-height: 45px !important;
+    }
+    
+    .save-status {
+        font-size: 0.8em !important;
+        padding: 10px 12px !important;
+    }
+    
+    h1 {
+        font-size: 1.5em !important;
+    }
+    
+    h2 {
+        font-size: 1.2em !important;
+    }
+}

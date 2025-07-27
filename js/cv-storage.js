@@ -207,22 +207,22 @@ class CVGallery {
                      onclick="viewSavedCV('${cv.id}')">
                     <div style="display: flex; align-items: center; margin-bottom: 15px;">
                         ${photoDisplay}
-                        <div style="margin-left: 15px; flex: 1;">
-                            <h3 style="margin: 0; color: #06142E; font-size: 1.2em;">${cv.fullName}</h3>
-                            <p style="margin: 5px 0 0 0; color: #1BA098; font-weight: 500;">${cv.jobTitle}</p>
+                        <div style="margin-left: 15px; flex: 1; min-width: 0;">
+                            <h3 style="margin: 0; color: #06142E; font-size: 1.2em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${cv.fullName}</h3>
+                            <p style="margin: 5px 0 0 0; color: #1BA098; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${cv.jobTitle}</p>
                         </div>
                     </div>
                     <div style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
-                        <div style="margin-bottom: 5px;">📧 ${cv.email || 'No email provided'}</div>
-                        <div style="margin-bottom: 5px;">📱 ${cv.phone || 'No phone provided'}</div>
-                        <div>📅 Created: ${createdDate}</div>
+                        <div style="margin-bottom: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">📧 ${cv.email || 'No email provided'}</div>
+                        <div style="margin-bottom: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">📱 ${cv.phone || 'No phone provided'}</div>
+                        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">📅 Created: ${createdDate}</div>
                     </div>
                     <div style="display: flex; gap: 10px; margin-top: 15px;">
-                        <button class="btn" style="flex: 1; padding: 8px 12px; background: #1BA098; color: white; border: none; border-radius: 5px; font-size: 0.9em; cursor: pointer;"
+                        <button class="btn" style="flex: 1; padding: 8px 12px; background: #1BA098; color: white; border: none; border-radius: 5px; font-size: 0.9em; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                 onclick="event.stopPropagation(); viewSavedCV('${cv.id}')">
                             👁️ View CV
                         </button>
-                        <button class="btn" style="flex: 1; padding: 8px 12px; background: #06142E; color: white; border: none; border-radius: 5px; font-size: 0.9em; cursor: pointer;"
+                        <button class="btn" style="flex: 1; padding: 8px 12px; background: #06142E; color: white; border: none; border-radius: 5px; font-size: 0.9em; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                                 onclick="event.stopPropagation(); downloadSavedCV('${cv.id}')">
                             📥 Download
                         </button>
@@ -260,14 +260,121 @@ class CVGallery {
                     transform: scale(1.02);
                 }
                 
+                /* Enhanced Mobile Gallery Styles */
                 @media (max-width: 768px) {
                     .cv-gallery-grid {
                         grid-template-columns: 1fr !important;
                         gap: 15px !important;
+                        padding: 0 10px !important;
                     }
                     
                     .cv-stats {
                         gap: 20px !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                    }
+                    
+                    .cv-gallery-card {
+                        padding: 15px !important;
+                        border-radius: 12px !important;
+                    }
+                    
+                    .cv-gallery-card h3 {
+                        font-size: 1.1em !important;
+                    }
+                    
+                    .cv-gallery-card p {
+                        font-size: 0.95em !important;
+                    }
+                    
+                    .cv-gallery-card .btn {
+                        padding: 10px 8px !important;
+                        font-size: 0.85em !important;
+                        border-radius: 6px !important;
+                    }
+                    
+                    /* Gallery Header Mobile */
+                    .cv-gallery-header h2 {
+                        font-size: 1.5em !important;
+                        margin-bottom: 8px !important;
+                    }
+                    
+                    .cv-gallery-header p {
+                        font-size: 1em !important;
+                        padding: 0 10px !important;
+                    }
+                    
+                    /* Photo Display Mobile */
+                    .cv-gallery-card > div:first-child {
+                        flex-direction: column !important;
+                        text-align: center !important;
+                        align-items: center !important;
+                    }
+                    
+                    .cv-gallery-card > div:first-child > div:last-child {
+                        margin-left: 0 !important;
+                        margin-top: 10px !important;
+                    }
+                }
+                
+                @media (max-width: 480px) {
+                    .cv-gallery-grid {
+                        padding: 0 5px !important;
+                        gap: 12px !important;
+                    }
+                    
+                    .cv-gallery-card {
+                        padding: 12px !important;
+                    }
+                    
+                    .cv-gallery-card h3 {
+                        font-size: 1em !important;
+                    }
+                    
+                    .cv-gallery-card p {
+                        font-size: 0.9em !important;
+                    }
+                    
+                    .cv-gallery-card .btn {
+                        padding: 8px 6px !important;
+                        font-size: 0.8em !important;
+                    }
+                    
+                    .cv-gallery-header h2 {
+                        font-size: 1.3em !important;
+                    }
+                    
+                    .cv-gallery-header p {
+                        font-size: 0.9em !important;
+                    }
+                    
+                    /* Profile photo size adjustment */
+                    .cv-gallery-card img,
+                    .cv-gallery-card > div:first-child > div:first-child {
+                        width: 60px !important;
+                        height: 60px !important;
+                        font-size: 1.2em !important;
+                    }
+                }
+                
+                /* Touch-friendly interactions */
+                @media (hover: none) and (pointer: coarse) {
+                    .cv-gallery-card:hover {
+                        transform: none !important;
+                    }
+                    
+                    .cv-gallery-card:active {
+                        transform: scale(0.98) !important;
+                        transition: transform 0.1s ease !important;
+                    }
+                    
+                    .cv-gallery-card .btn:hover {
+                        transform: none !important;
+                    }
+                    
+                    .cv-gallery-card .btn:active {
+                        transform: scale(0.95) !important;
+                        transition: transform 0.1s ease !important;
                     }
                 }
             `;
