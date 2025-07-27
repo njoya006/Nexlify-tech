@@ -1,5 +1,8 @@
 // CV Creator JS - Professional Design based on sample_cv.jpg
 
+// Load CV storage system
+const cvStorage = new CVStorage();
+
 document.getElementById('generateBtn').addEventListener('click', function() {
     const fullName = document.getElementById('fullName').value || 'Your Name';
     const jobTitle = document.getElementById('jobTitle').value || 'Your Job Title';
@@ -238,6 +241,14 @@ document.getElementById('generateBtn').addEventListener('click', function() {
         window.latestPhotoDataUrl = null;
         window.latestCVHtml = cvHtml;
     }
+
+    // Store form data for saving
+    window.latestFormData = {
+        fullName, jobTitle, email, phone, location, linkedin, github, website, 
+        twitter, stackoverflow, summary, techstack, skills, experience, 
+        education, awards, volunteer, certifications, projects, languages, 
+        interests, references, availability, custom
+    };
 });
 
 // Download CV functionality
@@ -312,5 +323,89 @@ document.getElementById('viewBtn').addEventListener('click', function() {
             </html>
         `);
         newWindow.document.close();
+    } else {
+        alert('Please generate a CV first before viewing it.');
     }
 });
+
+// Save CV functionality
+document.getElementById('saveBtn').addEventListener('click', function() {
+    if (!window.latestCVHtml || !window.latestFormData) {
+        showSaveStatus('Please generate a CV first before saving it.', 'error');
+        return;
+    }
+
+    const formData = window.latestFormData;
+    
+    // Validate required fields
+    if (!formData.fullName.trim() || !formData.jobTitle.trim()) {
+        showSaveStatus('Please fill in at least the Full Name and Job Title before saving.', 'error');
+        return;
+    }
+
+    const cvData = {
+        fullName: formData.fullName,
+        jobTitle: formData.jobTitle,
+        email: formData.email,
+        phone: formData.phone,
+        cvHtml: window.latestCVHtml,
+        photoDataUrl: window.latestPhotoDataUrl,
+        formData: formData,
+        isPublic: true
+    };
+
+    const cvId = cvStorage.saveCV(cvData);
+    
+    if (cvId) {
+        showSaveStatus(`CV saved successfully! ID: ${cvId}`, 'success');
+        
+        // Update button to show CV is saved
+        const saveBtn = document.getElementById('saveBtn');
+        const originalText = saveBtn.textContent;
+        saveBtn.textContent = '✅ CV Saved!';
+        saveBtn.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+        
+        setTimeout(() => {
+            saveBtn.textContent = originalText;
+            saveBtn.style.background = '';
+        }, 3000);
+    } else {
+        showSaveStatus('Error saving CV. Please try again.', 'error');
+    }
+});
+
+// View Saved CVs functionality
+document.getElementById('viewSavedBtn').addEventListener('click', function() {
+    window.open('cv.html#saved-cvs', '_blank');
+});
+
+// Show save status messages
+function showSaveStatus(message, type = 'info') {
+    // Remove existing status messages
+    const existingStatus = document.querySelector('.save-status');
+    if (existingStatus) {
+        existingStatus.remove();
+    }
+    
+    // Create new status message
+    const statusDiv = document.createElement('div');
+    statusDiv.className = `save-status ${type}`;
+    statusDiv.textContent = message;
+    
+    document.body.appendChild(statusDiv);
+    
+    // Show the message
+    setTimeout(() => {
+        statusDiv.classList.add('show');
+    }, 100);
+    
+    // Hide and remove the message after 4 seconds
+    setTimeout(() => {
+        statusDiv.classList.remove('show');
+        setTimeout(() => {
+            if (statusDiv.parentNode) {
+                statusDiv.parentNode.removeChild(statusDiv);
+            }
+        }, 300);
+    }, 4000);
+}

@@ -564,6 +564,37 @@ nav {
     </div>
   </section>
 
+  <!-- Saved CVs Gallery Section -->
+  <section id="saved-cvs" style="padding: 40px 20px; background: #f8f9fa;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="color: #06142E; margin-bottom: 15px;">📁 Our Associates' CVs</h2>
+        <p style="color: #666; font-size: 1.1em; margin-bottom: 30px;">
+          Discover the professional profiles and expertise of our team members and associates
+        </p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+          <a href="cv-creator.html" class="btn" style="background: #1BA098; color: white;">
+            🎨 Create Your CV
+          </a>
+          <button onclick="refreshSavedCVs()" class="btn btn-outline" style="border-color: #1BA098; color: #1BA098;">
+            🔄 Refresh Gallery
+          </button>
+          <button onclick="clearAllSavedCVs()" class="btn" style="background: #e74c3c; color: white;">
+            🗑️ Clear All CVs
+          </button>
+        </div>
+      </div>
+      
+      <!-- Gallery Container -->
+      <div id="saved-cvs-gallery">
+        <div style="text-align: center; padding: 40px; color: #666;">
+          <h3>Loading CVs...</h3>
+          <p>Please wait while we load the saved CVs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Call to Action -->
   <section style="background: linear-gradient(135deg, #1BA098, #06142E); color: white; text-align: center; padding: 50px 20px; margin: 40px 0; border-radius: 15px;">
     <h2>Want to Work With Us?</h2>
@@ -593,5 +624,144 @@ nav {
       <p>&copy; 2025 Nexlify Tech. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- CV Storage Scripts -->
+  <script src="js/cv-storage.js"></script>
+  <script>
+    // Load saved CVs gallery when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      loadSavedCVsGallery();
+      
+      // Check if user clicked "View All CVs" from CV creator
+      if (window.location.hash === '#saved-cvs') {
+        document.getElementById('saved-cvs').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    function loadSavedCVsGallery() {
+      const galleryContainer = document.getElementById('saved-cvs-gallery');
+      if (galleryContainer && window.cvGallery) {
+        galleryContainer.innerHTML = window.cvGallery.generateGalleryHTML();
+      }
+    }
+
+    function refreshSavedCVs() {
+      loadSavedCVsGallery();
+      
+      // Show refresh confirmation
+      const button = event.target;
+      const originalText = button.textContent;
+      button.textContent = '✅ Refreshed!';
+      button.style.background = '#27ae60';
+      button.style.color = 'white';
+      button.style.borderColor = '#27ae60';
+      
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = '';
+        button.style.color = '#1BA098';
+        button.style.borderColor = '#1BA098';
+      }, 2000);
+    }
+
+    function clearAllSavedCVs() {
+      if (confirm('⚠️ Are you sure you want to delete ALL saved CVs? This action cannot be undone!')) {
+        if (window.cvStorage && window.cvStorage.clearAllCVs()) {
+          loadSavedCVsGallery();
+          
+          // Show success message
+          const notification = document.createElement('div');
+          notification.style.cssText = `
+            position: fixed; top: 20px; right: 20px; z-index: 1000;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white; padding: 15px 25px; border-radius: 8px;
+            font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+          `;
+          notification.textContent = '🗑️ All CVs have been deleted successfully!';
+          document.body.appendChild(notification);
+          
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.parentNode.removeChild(notification);
+            }
+          }, 4000);
+        }
+      }
+    }
+
+    // Global functions for CV operations (accessible from gallery)
+    window.viewSavedCV = function(cvId) {
+      if (window.cvStorage) {
+        const cv = window.cvStorage.getCVById(cvId);
+        
+        if (cv && cv.cvHtml) {
+          const newWindow = window.open('', '_blank');
+          newWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta charset='UTF-8'>
+              <title>${cv.fullName} - CV</title>
+              <style>
+                body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+                .cv-document-professional { display: grid; grid-template-columns: 300px 1fr; max-width: 900px; margin: 0 auto; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+                .cv-left-column { background: #2c3e50; color: white; padding: 30px; }
+                .cv-right-column { padding: 30px; background: white; }
+                .cv-profile-photo { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 20px; border: 4px solid white; }
+                .cv-name-left { font-size: 1.8em; font-weight: bold; margin: 10px 0; }
+                .cv-title-left { font-size: 1.1em; margin-bottom: 20px; opacity: 0.9; }
+                .cv-section-title-left { color: #3498db; font-size: 1em; font-weight: bold; margin: 20px 0 10px 0; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+                .cv-section-title-right { color: #2c3e50; font-size: 1.1em; font-weight: bold; margin: 20px 0 10px 0; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+                .contact-item-left { margin: 8px 0; font-size: 0.9em; display: flex; align-items: center; gap: 8px; }
+                .contact-link { color: white; text-decoration: none; transition: all 0.3s ease; }
+                .contact-link:hover { color: #3498db; text-decoration: underline; }
+                .cv-logo-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); text-align: center; }
+                .cv-logo { width: 60px; height: 60px; border-radius: 8px; margin-bottom: 10px; object-fit: contain; background: white; padding: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+                .cv-logo-title { font-size: 0.9em; font-weight: bold; margin: 5px 0; color: #3498db; }
+                .cv-logo-tagline { font-size: 0.7em; margin: 0; opacity: 0.8; font-style: italic; }
+                .skill-badge { display: inline-block; background: #3498db; color: white; padding: 4px 8px; margin: 2px; border-radius: 12px; font-size: 0.8em; }
+                .language-item, .interest-item { margin: 5px 0; font-size: 0.9em; }
+                .summary-text-right { line-height: 1.6; margin: 10px 0; }
+                .exp-item, .edu-item, .project-item, .cert-item, .award-item { margin: 10px 0; line-height: 1.5; border-left: 3px solid #3498db; padding-left: 10px; }
+                @media (max-width: 768px) {
+                  .cv-document-professional { grid-template-columns: 1fr; }
+                  .cv-left-column, .cv-right-column { padding: 20px; }
+                }
+              </style>
+            </head>
+            <body>
+              ${cv.cvHtml}
+            </body>
+            </html>
+          `);
+          newWindow.document.close();
+        } else {
+          alert('CV not found or corrupted.');
+        }
+      }
+    };
+
+    window.downloadSavedCV = function(cvId) {
+      if (window.cvStorage) {
+        const cv = window.cvStorage.getCVById(cvId);
+        
+        if (cv && cv.cvHtml) {
+          const htmlContent = `<!DOCTYPE html><html><head><meta charset='UTF-8'><title>${cv.fullName} - CV</title><style>body{font-family:'Segoe UI',sans-serif;margin:0;padding:20px;background:#f5f5f5;} .cv-document-professional{display:grid;grid-template-columns:300px 1fr;max-width:900px;margin:0 auto;background:white;box-shadow:0 4px 20px rgba(0,0,0,0.1);} .cv-left-column{background:#2c3e50;color:white;padding:30px;} .cv-right-column{padding:30px;background:white;} .cv-profile-photo{width:120px;height:120px;border-radius:50%;margin-bottom:20px;border:4px solid white;} .cv-name-left{font-size:1.8em;font-weight:bold;margin:10px 0;} .cv-title-left{font-size:1.1em;margin-bottom:20px;opacity:0.9;} .cv-section-title-left{color:#3498db;font-size:1em;font-weight:bold;margin:20px 0 10px 0;border-bottom:2px solid #3498db;padding-bottom:5px;} .cv-section-title-right{color:#2c3e50;font-size:1.1em;font-weight:bold;margin:20px 0 10px 0;border-bottom:2px solid #3498db;padding-bottom:5px;} .contact-item-left{margin:8px 0;font-size:0.9em;display:flex;align-items:center;gap:8px;} .contact-link{color:white;text-decoration:none;transition:all 0.3s ease;} .contact-link:hover{color:#3498db;text-decoration:underline;} .cv-logo-section{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2);text-align:center;} .cv-logo{width:60px;height:60px;border-radius:8px;margin-bottom:10px;object-fit:contain;background:white;padding:5px;box-shadow:0 2px 8px rgba(0,0,0,0.2);} .cv-logo-title{font-size:0.9em;font-weight:bold;margin:5px 0;color:#3498db;} .cv-logo-tagline{font-size:0.7em;margin:0;opacity:0.8;font-style:italic;} .skill-badge{display:inline-block;background:#3498db;color:white;padding:4px 8px;margin:2px;border-radius:12px;font-size:0.8em;} .language-item,.interest-item{margin:5px 0;font-size:0.9em;} .summary-text-right{line-height:1.6;margin:10px 0;} .exp-item,.edu-item,.project-item,.cert-item,.award-item{margin:10px 0;line-height:1.5;border-left:3px solid #3498db;padding-left:10px;} @media (max-width: 768px) { .cv-document-professional { grid-template-columns: 1fr; } .cv-left-column, .cv-right-column { padding: 20px; } } </style></head><body>${cv.cvHtml}</body></html>`;
+          
+          const blob = new Blob([htmlContent], {type: 'text/html'});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `${cv.fullName.replace(/[^a-z0-9]/gi, '_')}_CV.html`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        } else {
+          alert('CV not found or corrupted.');
+        }
+      }
+    };
+  </script>
 </body>
 </html>
