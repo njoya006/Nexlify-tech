@@ -1,0 +1,370 @@
+/* Professional CV Styles - Based on sample_cv.jpg */
+
+/* General CV Container */
+.cv-document-professional {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 800px;
+}
+
+/* Left Column - Dark Blue */
+.cv-left-column {
+    background: #2c3e50;
+    color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Right Column - White */
+.cv-right-column {
+    padding: 30px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Profile Section */
+.cv-profile-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cv-profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid white;
+    object-fit: cover;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cv-name-left {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.cv-title-left {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    text-align: center;
+    font-weight: 300;
+}
+
+/* Section Titles */
+.cv-section-title-left {
+    color: #3498db;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cv-section-title-right {
+    color: #2c3e50;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Left Column Sections */
+.cv-section-left {
+    margin-bottom: 25px;
+}
+
+/* Contact Info */
+.cv-contact-list {
+    margin-top: 10px;
+}
+
+.contact-item-left {
+    margin: 8px 0;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-item-left .icon {
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
+.contact-link {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+/* Skills */
+.skills-list-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.skill-badge {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+    background: #2980b9;
+    transform: translateY(-1px);
+}
+
+/* Languages */
+.languages-list-left {
+    margin-top: 10px;
+}
+
+.language-item {
+    margin: 5px 0;
+    font-size: 0.9em;
+    padding: 3px 0;
+    border-left: 2px solid #3498db;
+    padding-left: 8px;
+}
+
+/* Interests */
+.interests-list-left {
+    margin-top: 10px;
+}
+
+.interest-item {
+    margin: 5px 0;
+    font-size: 0.9em;
+    padding: 3px 0;
+    opacity: 0.9;
+}
+
+/* Logo Section */
+.cv-logo-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.cv-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: contain;
+    background: white;
+    padding: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cv-logo-title {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #3498db;
+}
+
+.cv-logo-tagline {
+    font-size: 0.7em;
+    margin: 0;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+/* Right Column Sections */
+.cv-section-right {
+    margin-bottom: 25px;
+}
+
+/* Tech Stack */
+.tech-stack-right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.tech-badge {
+    display: inline-block;
+    background: #ecf0f1;
+    color: #2c3e50;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 500;
+    border: 1px solid #bdc3c7;
+}
+
+/* Summary Text */
+.summary-text-right {
+    line-height: 1.6;
+    margin: 10px 0;
+    color: #34495e;
+    text-align: justify;
+}
+
+/* Content Items */
+.experience-list-right,
+.education-list-right,
+.projects-list-right,
+.certifications-list-right,
+.awards-list-right {
+    margin-top: 10px;
+}
+
+.exp-item,
+.edu-item,
+.project-item,
+.cert-item,
+.award-item {
+    margin: 10px 0;
+    line-height: 1.5;
+    border-left: 3px solid #3498db;
+    padding-left: 10px;
+    color: #34495e;
+    position: relative;
+}
+
+.exp-item::before,
+.edu-item::before,
+.project-item::before,
+.cert-item::before,
+.award-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: #3498db;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px #3498db;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cv-document-professional {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        margin: 10px;
+    }
+    
+    .cv-left-column,
+    .cv-right-column {
+        padding: 20px;
+    }
+    
+    .cv-name-left {
+        font-size: 1.5em;
+    }
+    
+    .cv-title-left {
+        font-size: 1em;
+    }
+    
+    .cv-profile-photo {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .cv-document-professional {
+        box-shadow: none;
+        max-width: 100%;
+        margin: 0;
+        grid-template-columns: 280px 1fr;
+    }
+    
+    .cv-left-column,
+    .cv-right-column {
+        padding: 20px;
+    }
+    
+    .skill-badge,
+    .tech-badge {
+        border: 1px solid #3498db;
+        background: white !important;
+        color: #3498db !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* Additional Professional Elements */
+.cv-section-left:last-child,
+.cv-section-right:last-child {
+    margin-bottom: 0;
+}
+
+/* Hover effects for interactive elements */
+.contact-item-left:hover {
+    opacity: 0.8;
+    transform: translateX(2px);
+    transition: all 0.3s ease;
+}
+
+.language-item:hover,
+.interest-item:hover {
+    opacity: 1;
+    transform: translateX(2px);
+    transition: all 0.3s ease;
+}
+
+/* Enhanced typography */
+.cv-document-professional {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    line-height: 1.4;
+}
+
+/* Color scheme based on sample */
+.cv-left-column {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.cv-section-title-left,
+.skill-badge,
+.exp-item,
+.edu-item,
+.project-item,
+.cert-item,
+.award-item {
+    border-color: #3498db;
+}
+
+.cv-section-title-right {
+    color: #2c3e50;
+    border-color: #3498db;
+}

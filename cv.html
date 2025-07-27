@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - Nexlify Tech Team</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f5f7fa;
+  color: #333;
+}
+header {
+  background-color: #06142E;
+  color: #fff;
+  padding: 20px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid #1BA098;
+  box-shadow: 0 4px 15px rgba(27, 160, 152, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(27, 160, 152, 0.5);
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1BA098, #00E5FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-text p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #B0BEC5;
+  font-weight: 300;
+}
+
+nav {
+  flex-shrink: 0;
+}
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin: 5px 15px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li a:hover {
+      background-color: #1BA098;
+    }
+    .active {
+      background-color: #1BA098;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #06142E;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2.2em;
+    }
+    h3 {
+      color: #06142E;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    .cv-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .cv-card {
+      background-color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .cv-card:hover {
+      transform: translateY(-5px);
+    }
+    .cv-header {
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    .cv-content {
+      padding: 30px;
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3em;
+      margin: 0 auto 20px;
+    }
+    .section-title {
+      background-color: #f8f9fa;
+      padding: 10px 15px;
+      border-left: 4px solid #1BA098;
+      margin: 25px 0 15px;
+      font-weight: bold;
+      color: #06142E;
+    }
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .skill-item {
+      background-color: #e8f4f8;
+      color: #1BA098;
+      padding: 8px 12px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+    .experience-item {
+      border-left: 3px solid #1BA098;
+      padding-left: 15px;
+      margin-bottom: 20px;
+    }
+    .experience-date {
+      color: #1BA098;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    .contact-info {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .contact-icon {
+      margin-right: 10px;
+      font-size: 1.2em;
+      color: #1BA098;
+    }
+    footer {
+      background-color: #06142E;
+      color: #fff;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 12px 25px;
+      background-color: #1BA098;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #158f87;
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+    .btn-outline:hover {
+      background-color: white;
+      color: #06142E;
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+      
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .logo-section {
+        justify-content: center;
+      }
+      
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .brand-text h1 {
+        font-size: 1.5em;
+      }
+      
+      .brand-text p {
+        font-size: 0.8em;
+      }
+      
+      nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      nav ul li {
+        margin: 5px;
+      }
+      
+      nav ul li a {
+        padding: 8px 12px;
+        font-size: 0.9em;
+      }
+      section {
+        padding: 30px 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.8em;
+      }
+      .cv-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="nexlify-logo.jpg" alt="Nexlify Tech Logo" class="logo">
+        <div class="brand-text">
+          <h1>Nexlify Tech</h1>
+          <p>Building Smart Solutions for the Digital Age</p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="cv.html" class="active">CV</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <h1>Our Team CVs</h1>
+    <p style="text-align: center; font-size: 1.2em; margin-bottom: 40px;">Meet the talent behind Nexlify Tech</p>
+    
+    <!-- CV Creator Section -->
+    <div style="background: linear-gradient(135deg, #1BA098, #06142E); color: white; padding: 40px; border-radius: 15px; text-align: center; margin-bottom: 40px;">
+      <h2 style="color: white; margin-bottom: 15px;">📝 Create Your Professional CV</h2>
+      <p style="font-size: 1.1em; margin-bottom: 25px; opacity: 0.9;">
+        Are you looking to join our team? Create a professional CV that showcases your skills and experience with our interactive CV builder.
+      </p>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <a href="cv-creator.html" class="btn" style="background: white; color: #06142E; font-size: 1.1em; padding: 15px 30px;">
+          🎨 Create Your CV Now
+        </a>
+        <a href="contact.html" class="btn btn-outline" style="font-size: 1.1em; padding: 15px 30px;">
+          💼 Apply to Join Our Team
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div id="cv-profiles" class="cv-container">
+      <!-- CV profiles will be loaded dynamically by profile-system.js -->
+      <div class="cv-card">
+        <div class="cv-header">
+          <div class="profile-img">👨‍💻</div>
+          <h2 style="color: white;">Njoya Perfect</h2>
+          <p style="font-size: 1.1em;">Co-founder & Backend Developer</p>
+          <div style="margin-top: 20px;">
+            <a href="#" class="btn btn-outline">Download PDF</a>
+            <a href="contact.html" class="btn btn-outline">Contact</a>
+          </div>
+        </div>
+        <div class="cv-content">
+          <div class="contact-info">
+            <h4 style="margin-bottom: 15px; color: #06142E;">Contact Information</h4>
+            <div class="contact-item">
+              <span class="contact-icon">📧</span>
+              <span>nexlifytech06@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📱</span>
+              <span>+237 683821011</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span>Cameroon, Central Africa</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">🔗</span>
+              <span>LinkedIn: /in/njoya-perfect</span>
+            </div>
+          </div>
+
+          <div class="section-title">Professional Summary</div>
+          <p>Passionate backend developer and co-founder of Nexlify Tech with expertise in building secure, scalable web applications. Specialized in Django framework, PostgreSQL databases, and API development. Committed to creating robust solutions that drive business growth and enhance user experiences across African markets.</p>
+
+          <div class="section-title">Technical Skills</div>
+          <div class="skill-grid">
+            <div class="skill-item">Django</div>
+            <div class="skill-item">Python</div>
+            <div class="skill-item">PostgreSQL</div>
+            <div class="skill-item">API Development</div>
+            <div class="skill-item">Docker</div>
+            <div class="skill-item">Redis</div>
+            <div class="skill-item">AWS</div>
+            <div class="skill-item">Git</div>
+            <div class="skill-item">Linux</div>
+            <div class="skill-item">Security</div>
+            <div class="skill-item">Performance Optimization</div>
+            <div class="skill-item">Database Design</div>
+          </div>
+
+          <div class="section-title">Experience</div>
+          <div class="experience-item">
+            <h4>Co-founder & Backend Developer</h4>
+            <div class="experience-date">2025 - Present</div>
+            <p><strong>Nexlify Tech</strong></p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+              <li>Co-founded innovative tech startup focused on African e-commerce solutions</li>
+              <li>Leading backend development for Nexlify Shop e-commerce platform</li>
+              <li>Implementing secure payment systems and user authentication</li>
+              <li>Optimizing database performance for high-traffic applications</li>
+              <li>Mentoring development team on best practices and security protocols</li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <h4>Freelance Backend Developer</h4>
+            <div class="experience-date">2023 - 2025</div>
+            <p><strong>Various Clients</strong></p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+              <li>Developed custom web applications for small and medium businesses</li>
+              <li>Created RESTful APIs for mobile and web applications</li>
+              <li>Implemented secure authentication and authorization systems</li>
+              <li>Optimized database queries for improved application performance</li>
+            </ul>
+          </div>
+
+          <div class="section-title">Education</div>
+          <div class="experience-item">
+            <h4>Computer Science</h4>
+            <div class="experience-date">2020 - 2024</div>
+            <p><strong>University of Technology, Cameroon</strong></p>
+            <p>Focus on Software Engineering and Database Systems</p>
+          </div>
+
+          <div class="section-title">Projects</div>
+          <div class="experience-item">
+            <h4>Nexlify Shop</h4>
+            <p>Lead backend developer for comprehensive e-commerce platform serving African markets. Implemented secure payment processing, inventory management, and real-time order tracking.</p>
+          </div>
+          <div class="experience-item">
+            <h4>ChopSmo Meal Planner</h4>
+            <p>Backend architecture for meal planning application with nutrition tracking, recipe management, and user progress analytics.</p>
+          </div>
+
+          <div class="section-title">Certifications</div>
+          <ul style="margin-left: 20px;">
+            <li>Django Advanced Web Development</li>
+            <li>PostgreSQL Database Administration</li>
+            <li>AWS Cloud Solutions Architecture</li>
+            <li>Cybersecurity Fundamentals</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Associate CV -->
+      <div class="cv-card" id="associate">
+        <div class="cv-header">
+          <div class="profile-img">👩‍💻</div>
+          <h2 style="color: white;">Associate Name</h2>
+          <p style="font-size: 1.1em;">Co-founder & Frontend Developer</p>
+          <div style="margin-top: 20px;">
+            <a href="#" class="btn btn-outline">Download PDF</a>
+            <a href="contact.html" class="btn btn-outline">Contact</a>
+          </div>
+        </div>
+        <div class="cv-content">
+          <div class="contact-info">
+            <h4 style="margin-bottom: 15px; color: #06142E;">Contact Information</h4>
+            <div class="contact-item">
+              <span class="contact-icon">📧</span>
+              <span>nexlifytech06@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📱</span>
+              <span>+237 683821011</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span>Cameroon, Central Africa</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">🔗</span>
+              <span>LinkedIn: /in/associate-name</span>
+            </div>
+          </div>
+
+          <div class="section-title">Professional Summary</div>
+          <p>Creative frontend developer and co-founder of Nexlify Tech with a passion for creating exceptional user experiences. Specialized in modern web technologies, responsive design, and user interface optimization. Dedicated to building intuitive, accessible applications that delight users and drive business success.</p>
+
+          <div class="section-title">Technical Skills</div>
+          <div class="skill-grid">
+            <div class="skill-item">React</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">HTML5</div>
+            <div class="skill-item">CSS3</div>
+            <div class="skill-item">TypeScript</div>
+            <div class="skill-item">React Native</div>
+            <div class="skill-item">Figma</div>
+            <div class="skill-item">Adobe XD</div>
+            <div class="skill-item">Responsive Design</div>
+            <div class="skill-item">UI/UX Design</div>
+            <div class="skill-item">Sass/SCSS</div>
+            <div class="skill-item">Webpack</div>
+          </div>
+
+          <div class="section-title">Experience</div>
+          <div class="experience-item">
+            <h4>Co-founder & Frontend Developer</h4>
+            <div class="experience-date">2025 - Present</div>
+            <p><strong>Nexlify Tech</strong></p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+              <li>Co-founded innovative tech startup with focus on user-centered design</li>
+              <li>Leading frontend development for multiple client projects</li>
+              <li>Designing and implementing responsive web applications</li>
+              <li>Creating intuitive user interfaces that enhance user engagement</li>
+              <li>Collaborating with backend team to integrate APIs and services</li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <h4>UI/UX Designer & Frontend Developer</h4>
+            <div class="experience-date">2023 - 2025</div>
+            <p><strong>Freelance</strong></p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+              <li>Designed user interfaces for web and mobile applications</li>
+              <li>Developed responsive websites using modern JavaScript frameworks</li>
+              <li>Conducted user research and usability testing</li>
+              <li>Created design systems and style guides for consistency</li>
+            </ul>
+          </div>
+
+          <div class="section-title">Education</div>
+          <div class="experience-item">
+            <h4>Digital Design & Web Development</h4>
+            <div class="experience-date">2020 - 2024</div>
+            <p><strong>Institute of Technology, Cameroon</strong></p>
+            <p>Focus on User Experience Design and Frontend Technologies</p>
+          </div>
+
+          <div class="section-title">Projects</div>
+          <div class="experience-item">
+            <h4>Nexlify Shop Frontend</h4>
+            <p>Lead frontend developer creating intuitive shopping experience with React. Implemented responsive design, shopping cart functionality, and user authentication interfaces.</p>
+          </div>
+          <div class="experience-item">
+            <h4>ChopSmo Mobile App</h4>
+            <p>Frontend development for cross-platform meal planning app using React Native. Created engaging user interfaces for meal tracking and recipe discovery.</p>
+          </div>
+
+          <div class="section-title">Design Philosophy</div>
+          <ul style="margin-left: 20px;">
+            <li><strong>User-Centered:</strong> Every design decision is made with the user in mind</li>
+            <li><strong>Accessibility:</strong> Creating inclusive designs for all users</li>
+            <li><strong>Performance:</strong> Optimizing for fast loading and smooth interactions</li>
+            <li><strong>Consistency:</strong> Maintaining coherent design systems across platforms</li>
+          </ul>
+
+          <div class="section-title">Certifications</div>
+          <ul style="margin-left: 20px;">
+            <li>Google UX Design Professional Certificate</li>
+            <li>React Developer Certification</li>
+            <li>Adobe Certified Expert (ACE)</li>
+            <li>Web Accessibility Specialist</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section style="background: linear-gradient(135deg, #1BA098, #06142E); color: white; text-align: center; padding: 50px 20px; margin: 40px 0; border-radius: 15px;">
+    <h2>Want to Work With Us?</h2>
+    <p style="font-size: 1.1em; margin-bottom: 30px;">We're always open to discussing new opportunities and exciting projects.</p>
+    <a href="contact.html" class="btn btn-outline">Get In Touch</a>
+  </section>
+
+  <footer>
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; padding: 20px;">
+      <div>
+        <h3 style="margin-bottom: 15px;">Nexlify Tech</h3>
+        <p>Building Smart Solutions for the Digital Age</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Quick Links</h4>
+        <p><a href="about.html" style="color: #1BA098; text-decoration: none;">About Us</a></p>
+        <p><a href="services.html" style="color: #1BA098; text-decoration: none;">Services</a></p>
+        <p><a href="projects.html" style="color: #1BA098; text-decoration: none;">Projects</a></p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Contact</h4>
+        <p>nexlifytech06@gmail.com</p>
+        <p>+237 683821011</p>
+      </div>
+    </div>
+    <div style="text-align: center; border-top: 1px solid #1BA098; padding-top: 20px; margin-top: 20px;">
+      <p>&copy; 2025 Nexlify Tech. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

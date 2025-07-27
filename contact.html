@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Nexlify Tech</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background-color: #06142E;
+      color: #fff;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid #1BA098;
+      box-shadow: 0 4px 15px rgba(27, 160, 152, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(27, 160, 152, 0.5);
+    }
+    
+    .brand-text h1 {
+      margin: 0;
+      font-size: 1.8em;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1BA098, #00E5FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .brand-text p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #B0BEC5;
+      font-weight: 300;
+    }
+    
+    nav {
+      flex-shrink: 0;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin: 5px 15px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li a:hover {
+      background-color: #1BA098;
+    }
+    .active {
+      background-color: #1BA098;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #06142E;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2.2em;
+    }
+    h3 {
+      color: #06142E;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .contact-form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .contact-info {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #06142E;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e1e1e1;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #1BA098;
+    }
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+    }
+    .contact-icon {
+      font-size: 2em;
+      color: #1BA098;
+      margin-right: 15px;
+      width: 60px;
+      text-align: center;
+    }
+    .contact-details h4 {
+      color: #06142E;
+      margin-bottom: 5px;
+    }
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      justify-content: center;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background-color: #1BA098;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.5em;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .social-btn:hover {
+      transform: translateY(-3px);
+      background-color: #158f87;
+    }
+    .office-hours {
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      color: white;
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    footer {
+      background-color: #06142E;
+      color: #fff;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 30px;
+      background-color: #1BA098;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
+    }
+    .btn:hover {
+      background-color: #158f87;
+      transform: translateY(-2px);
+    }
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .error-message {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+      
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .logo-section {
+        justify-content: center;
+      }
+      
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .brand-text h1 {
+        font-size: 1.5em;
+      }
+      
+      .brand-text p {
+        font-size: 0.8em;
+      }
+      
+      nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      nav ul li {
+        margin: 5px;
+      }
+      
+      nav ul li a {
+        padding: 8px 12px;
+        font-size: 0.9em;
+      }
+      section {
+        padding: 30px 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.8em;
+      }
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .contact-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      .contact-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="nexlify-logo.jpg" alt="Nexlify Tech Logo" class="logo">
+        <div class="brand-text">
+          <h1>Nexlify Tech</h1>
+          <p>Building Smart Solutions for the Digital Age</p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <h1>Contact Us</h1>
+    <p style="text-align: center; font-size: 1.2em; margin-bottom: 40px;">Let's discuss your next digital project</p>
+  </section>
+
+  <section>
+    <div class="contact-container">
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h2 style="text-align: left;">Send Us a Message</h2>
+        <div class="success-message" id="successMessage">
+          Thank you for your message! We'll get back to you within 24 hours.
+        </div>
+        <div class="error-message" id="errorMessage">
+          Please fill in all required fields correctly.
+        </div>
+        <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <!-- Hidden field for spam protection -->
+          <input type="hidden" name="form-name" value="contact">
+          <div style="display: none;">
+            <label>Don't fill this out if you're human: <input name="bot-field"></label>
+          </div>
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="from_name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="from_email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="company">Company/Organization</label>
+            <input type="text" id="company" name="company">
+          </div>
+          <div class="form-group">
+            <label for="service">Service Interested In</label>
+            <select id="service" name="service">
+              <option value="">Select a service</option>
+              <option value="ecommerce">E-commerce Development</option>
+              <option value="backend">Backend Development</option>
+              <option value="frontend">Frontend/UI Development</option>
+              <option value="mobile">Mobile App Development</option>
+              <option value="consulting">Tech Consulting</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="budget">Project Budget</label>
+            <select id="budget" name="budget">
+              <option value="">Select budget range</option>
+              <option value="under-1k">Under $1,000</option>
+              <option value="1k-5k">$1,000 - $5,000</option>
+              <option value="5k-10k">$5,000 - $10,000</option>
+              <option value="10k-plus">$10,000+</option>
+              <option value="discuss">Let's discuss</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="timeline">Project Timeline</label>
+            <select id="timeline" name="timeline">
+              <option value="">Select timeline</option>
+              <option value="asap">ASAP</option>
+              <option value="1-month">Within 1 month</option>
+              <option value="2-3-months">2-3 months</option>
+              <option value="6-months">3-6 months</option>
+              <option value="flexible">Flexible</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Project Details *</label>
+            <textarea id="message" name="message" placeholder="Tell us about your project, goals, and any specific requirements..." required></textarea>
+          </div>
+          <button type="submit" class="btn" id="submitBtn">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <h2 style="text-align: left;">Get In Touch</h2>
+        <p style="margin-bottom: 30px;">Ready to start your project? We'd love to hear from you. Choose the method that works best for you.</p>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-details">
+            <h4>Email Us</h4>
+            <p>nexlifytech06@gmail.com</p>
+            <small>We respond within 24 hours</small>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-details">
+            <h4>Call or WhatsApp</h4>
+            <p>+237 683821011</p>
+            <small>Available during business hours</small>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-details">
+            <h4>Location</h4>
+            <p>Cameroon, Central Africa</p>
+            <small>Remote-first team, global projects</small>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div class="contact-details">
+            <h4>Live Chat</h4>
+            <p>Available on our website</p>
+            <small>Monday to Friday, 9 AM - 6 PM WAT</small>
+          </div>
+        </div>
+
+        <div class="office-hours">
+          <h3 style="color: white; margin-bottom: 15px;">Business Hours</h3>
+          <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM (WAT)</p>
+          <p><strong>Saturday:</strong> 10:00 AM - 2:00 PM (WAT)</p>
+          <p><strong>Sunday:</strong> Closed</p>
+          <p style="margin-top: 15px; font-size: 0.9em;">Emergency support available 24/7 for existing clients</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+          <h4 style="margin-bottom: 15px;">Follow Us</h4>
+          <div class="social-links">
+            <a href="#" class="social-btn" title="LinkedIn">💼</a>
+            <a href="#" class="social-btn" title="GitHub">🐱</a>
+            <a href="#" class="social-btn" title="WhatsApp">💬</a>
+            <a href="#" class="social-btn" title="Twitter">🐦</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section style="background-color: #fff; padding: 40px; margin: 40px 0; border-radius: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+    <h2>Frequently Asked Questions</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
+      <div>
+        <h4 style="color: #1BA098; margin-bottom: 10px;">How long does a typical project take?</h4>
+        <p>Project timelines vary based on complexity. Simple websites take 2-4 weeks, while complex e-commerce platforms can take 2-4 months. We'll provide a detailed timeline during our initial consultation.</p>
+      </div>
+      <div>
+        <h4 style="color: #1BA098; margin-bottom: 10px;">Do you work with clients outside Africa?</h4>
+        <p>Absolutely! While we specialize in African markets, we work with clients globally. Our remote-first approach allows us to collaborate effectively across time zones.</p>
+      </div>
+      <div>
+        <h4 style="color: #1BA098; margin-bottom: 10px;">What's included in your development services?</h4>
+        <p>Our services include planning, design, development, testing, deployment, and 3 months of free support. We also provide training and documentation for your team.</p>
+      </div>
+      <div>
+        <h4 style="color: #1BA098; margin-bottom: 10px;">Can you help improve an existing website?</h4>
+        <p>Yes! We offer website audits, performance optimization, feature additions, and complete redesigns. We can work with your existing codebase or recommend a fresh start.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section style="background: linear-gradient(135deg, #1BA098, #06142E); color: white; text-align: center; padding: 50px 20px; margin: 40px 0; border-radius: 15px;">
+    <h2>Ready to Start Your Project?</h2>
+    <p style="font-size: 1.1em; margin-bottom: 30px;">Join the growing number of businesses who trust Nexlify Tech with their digital transformation.</p>
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+      <a href="mailto:nexlifytech06@gmail.com" class="btn" style="background: white; color: #06142E; width: auto;">Email Us Now</a>
+      <a href="tel:+237683821011" class="btn" style="background: transparent; border: 2px solid white; width: auto;">Call Us</a>
+    </div>
+  </section>
+
+  <footer>
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; padding: 20px;">
+      <div>
+        <h3 style="margin-bottom: 15px;">Nexlify Tech</h3>
+        <p>Building Smart Solutions for the Digital Age</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Quick Links</h4>
+        <p><a href="about.html" style="color: #1BA098; text-decoration: none;">About Us</a></p>
+        <p><a href="services.html" style="color: #1BA098; text-decoration: none;">Services</a></p>
+        <p><a href="projects.html" style="color: #1BA098; text-decoration: none;">Projects</a></p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Contact</h4>
+        <p>nexlifytech06@gmail.com</p>
+        <p>+237 683821011</p>
+      </div>
+    </div>
+    <div style="text-align: center; border-top: 1px solid #1BA098; padding-top: 20px; margin-top: 20px;">
+      <p>&copy; 2025 Nexlify Tech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+  <script>
+    // Initialize EmailJS with your public key
+    (function() {
+      // You'll need to replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+      // Get it from https://www.emailjs.com/
+      emailjs.init('HhsCkjSl421yEOqRf'); // Replace with your EmailJS public key
+    })();
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.textContent;
+      
+      // Basic form validation
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      if (!name || !email || !message) {
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        return;
+      }
+      
+      // Show loading state
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      
+      // Send email using EmailJS
+      emailjs.sendForm('service_htvdwrm', 'template_4lzbqot', this)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          
+          // Hide error message and show success
+          document.getElementById('errorMessage').style.display = 'none';
+          document.getElementById('successMessage').style.display = 'block';
+          
+          // Reset form
+          document.getElementById('contactForm').reset();
+          
+          // Scroll to success message
+          document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+          
+        }, function(error) {
+          console.error('FAILED...', error);
+          
+          // Show error message
+          document.getElementById('errorMessage').textContent = 'Failed to send message. Please try again or email us directly at nexlifytech06@gmail.com';
+          document.getElementById('errorMessage').style.display = 'block';
+          document.getElementById('successMessage').style.display = 'none';
+        })
+        .finally(function() {
+          // Reset button state
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        });
+    });
+  </script>
+</body>
+</html>

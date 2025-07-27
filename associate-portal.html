@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" conte    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e1e8ed;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    
+    /* Photo Upload Styles */
+    .photo-upload-container {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    
+    .current-photo {
+      flex-shrink: 0;
+    }
+    
+    .photo-placeholder {
+      width: 120px;
+      height: 120px;
+      border: 2px dashed #ccc;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9fa;
+      color: #666;
+    }
+    
+    .photo-icon {
+      font-size: 2em;
+      margin-bottom: 5px;
+    }
+    
+    .photo-placeholder p {
+      font-size: 0.8em;
+      text-align: center;
+      margin: 0;
+    }
+    
+    .photo-upload-controls {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .upload-hint {
+      font-size: 0.8em;
+      color: #666;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }device-width, initial-scale=1.0">
+  <title>Associate Portal - Nexlify Tech</title>
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+    
+    .portal-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .header {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .user-avatar {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+    
+    .profile-section {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    
+    .profile-header {
+      background: linear-gradient(135deg, #06142E, #1BA098);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .profile-content {
+      padding: 30px;
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #06142E;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e1e1e1;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #1BA098;
+    }
+    
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .skill-tag {
+      background: #e7f3ff;
+      color: #0366d6;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .skill-tag:hover {
+      background: #1BA098;
+      color: white;
+    }
+    
+    .skill-tag.remove {
+      background: #ffebee;
+      color: #c62828;
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: #1BA098;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #158f87;
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: #1BA098;
+      border: 2px solid #1BA098;
+    }
+    
+    .btn-outline:hover {
+      background: #1BA098;
+      color: white;
+    }
+    
+    .section-title {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #06142E;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #1BA098;
+      padding-bottom: 10px;
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .project-card {
+      background: white;
+      border: 2px solid #e1e8ed;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .project-card:hover {
+      border-color: #1BA098;
+      transform: translateY(-5px);
+    }
+    
+    .project-status {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    
+    .status-active {
+      background: #d4edda;
+      color: #155724;
+    }
+    
+    .status-completed {
+      background: #cce5ff;
+      color: #004085;
+    }
+    
+    .alert {
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid;
+    }
+    
+    .alert-success {
+      background: #d4edda;
+      border-color: #28a745;
+      color: #155724;
+    }
+    
+    .alert-info {
+      background: #d1ecf1;
+      border-color: #17a2b8;
+      color: #0c5460;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      color: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      font-size: 0.9em;
+      opacity: 0.9;
+    }
+    
+    @media (max-width: 768px) {
+      .portal-container {
+        padding: 15px;
+      }
+      
+      .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="portal-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-section">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <img src="nexlify-logo.jpg" alt="Nexlify Tech Logo" style="width: 45px; height: 45px; border-radius: 10px; object-fit: cover; border: 2px solid #1BA098;">
+          <div>
+            <h1 style="margin: 0; font-size: 1.6em;">Nexlify Tech</h1>
+            <span style="color: #666; font-size: 0.9em;">Associate Portal</span>
+          </div>
+        </div>
+      </div>
+      <div class="user-info">
+        <div>
+          <p style="font-weight: 600; text-align: right;" id="user-name">Sarah Johnson</p>
+          <p style="color: #666; font-size: 0.9em;">Frontend Developer</p>
+        </div>
+        <div class="user-avatar" id="user-avatar">SJ</div>
+      </div>
+    </div>
+
+    <!-- Welcome Message -->
+    <div class="alert alert-info">
+      <strong>Welcome to your profile!</strong> Keep your information up-to-date to ensure it appears correctly on the company website and client materials.
+    </div>
+
+    <!-- Profile Statistics -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="projects-count">3</div>
+        <div class="stat-label">Active Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="skills-count">8</div>
+        <div class="stat-label">Skills Listed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="profile-completion">85%</div>
+        <div class="stat-label">Profile Complete</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="member-since">Feb 2025</div>
+        <div class="stat-label">Member Since</div>
+      </div>
+    </div>
+
+    <!-- Profile Form -->
+    <div class="profile-section">
+      <div class="profile-header">
+        <h2>👤 Your Professional Profile</h2>
+        <p>This information will be displayed on the company website</p>
+      </div>
+      <div class="profile-content">
+        <form id="profileForm">
+          <div class="form-grid">
+            <!-- Personal Information -->
+            <div>
+              <h3 class="section-title">Personal Information</h3>
+              
+              <!-- Profile Photo Upload -->
+              <div class="form-group">
+                <label for="profilePhoto">Profile Photo</label>
+                <div class="photo-upload-container">
+                  <div class="current-photo" id="currentPhotoPreview">
+                    <div class="photo-placeholder" id="photoPlaceholder">
+                      <span class="photo-icon">📷</span>
+                      <p>No photo uploaded</p>
+                    </div>
+                    <img id="photoPreview" style="display: none; width: 120px; height: 120px; object-fit: cover; border-radius: 50%;">
+                  </div>
+                  <div class="photo-upload-controls">
+                    <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" style="display: none;">
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('profilePhoto').click()">
+                      📸 Upload Photo
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="removePhotoBtn" style="display: none;" onclick="removeProfilePhoto()">
+                      🗑️ Remove
+                    </button>
+                    <p class="upload-hint">Recommended: Square image, max 2MB</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone">
+              </div>
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="City, Country">
+              </div>
+            </div>
+
+            <!-- Professional Information -->
+            <div>
+              <h3 class="section-title">Professional Details</h3>
+              <div class="form-group">
+                <label for="jobTitle">Job Title *</label>
+                <input type="text" id="jobTitle" name="jobTitle" required>
+              </div>
+              <div class="form-group">
+                <label for="department">Department</label>
+                <select id="department" name="department">
+                  <option value="">Select Department</option>
+                  <option value="Development">Development</option>
+                  <option value="Design">Design</option>
+                  <option value="Management">Management</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Operations">Operations</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="experience">Years of Experience</label>
+                <select id="experience" name="experience">
+                  <option value="">Select Experience</option>
+                  <option value="0-1">0-1 years</option>
+                  <option value="2-3">2-3 years</option>
+                  <option value="4-6">4-6 years</option>
+                  <option value="7-10">7-10 years</option>
+                  <option value="10+">10+ years</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="linkedin">LinkedIn Profile</label>
+                <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+              </div>
+            </div>
+          </div>
+
+          <!-- Bio Section -->
+          <div style="margin-top: 30px;">
+            <h3 class="section-title">Professional Bio</h3>
+            <div class="form-group">
+              <label for="bio">About You *</label>
+              <textarea id="bio" name="bio" required placeholder="Write a brief professional bio that will be displayed on the website. Highlight your expertise, experience, and what you bring to the team..."></textarea>
+            </div>
+          </div>
+
+          <!-- Skills Section -->
+          <div style="margin-top: 30px;">
+            <h3 class="section-title">Skills & Expertise</h3>
+            <div class="form-group">
+              <label for="newSkill">Add Skills</label>
+              <div style="display: flex; gap: 10px;">
+                <input type="text" id="newSkill" placeholder="Enter a skill (e.g., React, Python, UI Design)" style="flex: 1;">
+                <button type="button" class="btn btn-outline" onclick="addSkill()">Add Skill</button>
+              </div>
+            </div>
+            <div class="skills-container" id="skillsContainer">
+              <!-- Skills will be added here dynamically -->
+            </div>
+          </div>
+
+          <!-- Save Button -->
+          <div style="margin-top: 40px; text-align: center;">
+            <button type="submit" class="btn btn-primary">💾 Save Profile</button>
+            <button type="button" class="btn btn-secondary" onclick="previewProfile()" style="margin-left: 15px;">👁️ Preview</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Current Projects -->
+    <div class="profile-section">
+      <div class="profile-header">
+        <h2>🚀 Current Projects</h2>
+        <p>Projects you're currently working on</p>
+      </div>
+      <div class="profile-content">
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Projects will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Current user data (in real app, this would come from authentication)
+    let currentUser = {
+      id: 2,
+      fullName: "Sarah Johnson",
+      email: "sarah@nexlifytech.com",
+      phone: "+237 683821011",
+      location: "Douala, Cameroon",
+      jobTitle: "Frontend Developer",
+      department: "Development",
+      experience: "4-6",
+      linkedin: "https://linkedin.com/in/sarahjohnson",
+      bio: "Passionate frontend developer with 5+ years of experience creating beautiful, responsive web applications. I specialize in React, JavaScript, and modern CSS frameworks. I love turning complex problems into simple, beautiful designs.",
+      skills: ["React", "JavaScript", "CSS", "HTML", "TypeScript", "Figma", "Git", "Responsive Design"],
+      joinDate: "2025-02-15",
+      projects: [
+        { name: "Nexlify Shop", status: "active", role: "Lead Frontend" },
+        { name: "Client Portal", status: "active", role: "UI Developer" },
+        { name: "Company Website", status: "completed", role: "Frontend Developer" }
+      ]
+    };
+
+    // Load user data on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadUserData();
+      loadProjects();
+      updateStats();
+    });
+
+    function loadUserData() {
+      // Populate form fields
+      document.getElementById('fullName').value = currentUser.fullName;
+      document.getElementById('email').value = currentUser.email;
+      document.getElementById('phone').value = currentUser.phone || '';
+      document.getElementById('location').value = currentUser.location || '';
+      document.getElementById('jobTitle').value = currentUser.jobTitle;
+      document.getElementById('department').value = currentUser.department || '';
+      document.getElementById('experience').value = currentUser.experience || '';
+      document.getElementById('linkedin').value = currentUser.linkedin || '';
+      document.getElementById('bio').value = currentUser.bio || '';
+
+      // Load skills
+      const skillsContainer = document.getElementById('skillsContainer');
+      skillsContainer.innerHTML = '';
+      currentUser.skills.forEach(skill => {
+        const skillTag = createSkillTag(skill);
+        skillsContainer.appendChild(skillTag);
+      });
+
+      // Update header
+      document.getElementById('user-name').textContent = currentUser.fullName;
+      const initials = currentUser.fullName.split(' ').map(n => n[0]).join('');
+      document.getElementById('user-avatar').textContent = initials;
+    }
+
+    function createSkillTag(skill) {
+      const tag = document.createElement('span');
+      tag.className = 'skill-tag';
+      tag.innerHTML = `${skill} <span style="margin-left: 5px; cursor: pointer;" onclick="removeSkill('${skill}')">&times;</span>`;
+      return tag;
+    }
+
+    function addSkill() {
+      const skillInput = document.getElementById('newSkill');
+      const skill = skillInput.value.trim();
+      
+      if (skill && !currentUser.skills.includes(skill)) {
+        currentUser.skills.push(skill);
+        const skillsContainer = document.getElementById('skillsContainer');
+        const skillTag = createSkillTag(skill);
+        skillsContainer.appendChild(skillTag);
+        skillInput.value = '';
+        updateStats();
+      }
+    }
+
+    function removeSkill(skill) {
+      currentUser.skills = currentUser.skills.filter(s => s !== skill);
+      loadUserData(); // Reload skills display
+      updateStats();
+    }
+
+    function loadProjects() {
+      const projectsGrid = document.getElementById('projectsGrid');
+      projectsGrid.innerHTML = '';
+      
+      currentUser.projects.forEach(project => {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'project-card';
+        projectCard.innerHTML = `
+          <span class="project-status status-${project.status}">${project.status.toUpperCase()}</span>
+          <h4>${project.name}</h4>
+          <p style="color: #666; margin: 10px 0;">Role: ${project.role}</p>
+          <p style="font-size: 0.9em; color: #888;">Click to view project details</p>
+        `;
+        projectsGrid.appendChild(projectCard);
+      });
+    }
+
+    function updateStats() {
+      document.getElementById('projects-count').textContent = currentUser.projects.filter(p => p.status === 'active').length;
+      document.getElementById('skills-count').textContent = currentUser.skills.length;
+      
+      // Calculate profile completion
+      const fields = ['fullName', 'email', 'jobTitle', 'bio', 'skills', 'profileImage'];
+      const completed = fields.filter(field => {
+        if (field === 'skills') return currentUser.skills && currentUser.skills.length > 0;
+        if (field === 'profileImage') return currentUser.profileImage;
+        return currentUser[field] && currentUser[field].trim() !== '';
+      }).length;
+      
+      const percentage = Math.round((completed / fields.length) * 100);
+      document.getElementById('profile-completion').textContent = percentage + '%';
+      
+      // Format join date
+      if (currentUser.joinDate) {
+        const date = new Date(currentUser.joinDate);
+        const monthYear = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        document.getElementById('member-since').textContent = monthYear;
+      }
+    }
+
+    // Profile Photo Upload Functions
+    function setupPhotoUpload() {
+      const photoInput = document.getElementById('profilePhoto');
+      const photoPreview = document.getElementById('photoPreview');
+      const photoPlaceholder = document.getElementById('photoPlaceholder');
+      const removeBtn = document.getElementById('removePhotoBtn');
+
+      photoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          // Validate file size (max 2MB)
+          if (file.size > 2 * 1024 * 1024) {
+            alert('File size must be less than 2MB');
+            return;
+          }
+
+          // Validate file type
+          if (!file.type.startsWith('image/')) {
+            alert('Please select a valid image file');
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const imageData = e.target.result;
+            
+            // Update current user data
+            currentUser.profileImage = imageData;
+            profileManager.updateAssociate(currentUser.id, { profileImage: imageData });
+            
+            // Update preview
+            displayCurrentPhoto();
+            updateStats();
+            
+            showAlert('Profile photo updated successfully!', 'success');
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    function displayCurrentPhoto() {
+      const photoPreview = document.getElementById('photoPreview');
+      const photoPlaceholder = document.getElementById('photoPlaceholder');
+      const removeBtn = document.getElementById('removePhotoBtn');
+
+      if (currentUser.profileImage) {
+        photoPreview.src = currentUser.profileImage;
+        photoPreview.style.display = 'block';
+        photoPlaceholder.style.display = 'none';
+        removeBtn.style.display = 'inline-block';
+        
+        // Update header avatar
+        const headerAvatar = document.getElementById('user-avatar');
+        headerAvatar.innerHTML = `<img src="${currentUser.profileImage}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+      } else {
+        photoPreview.style.display = 'none';
+        photoPlaceholder.style.display = 'flex';
+        removeBtn.style.display = 'none';
+        
+        // Reset header avatar to initials
+        const headerAvatar = document.getElementById('user-avatar');
+        const initials = currentUser.fullName.split(' ').map(n => n[0]).join('');
+        headerAvatar.innerHTML = initials;
+      }
+    }
+
+    function removeProfilePhoto() {
+      if (confirm('Are you sure you want to remove your profile photo?')) {
+        currentUser.profileImage = null;
+        profileManager.updateAssociate(currentUser.id, { profileImage: null });
+        
+        displayCurrentPhoto();
+        updateStats();
+        
+        // Reset file input
+        document.getElementById('profilePhoto').value = '';
+        
+        showAlert('Profile photo removed successfully!', 'success');
+      }
+    }
+
+    // Initialize photo upload functionality
+    setupPhotoUpload();
+      
+      // Calculate profile completion
+      let completedFields = 0;
+      const requiredFields = ['fullName', 'email', 'jobTitle', 'bio'];
+      const optionalFields = ['phone', 'location', 'department', 'experience', 'linkedin'];
+      
+      requiredFields.forEach(field => {
+        if (currentUser[field]) completedFields += 20; // 20% each for required fields
+      });
+      
+      optionalFields.forEach(field => {
+        if (currentUser[field]) completedFields += 4; // 4% each for optional fields
+      });
+      
+      document.getElementById('profile-completion').textContent = Math.min(100, completedFields) + '%';
+      
+      // Format join date
+      const joinDate = new Date(currentUser.joinDate);
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      document.getElementById('member-since').textContent = `${monthNames[joinDate.getMonth()]} ${joinDate.getFullYear()}`;
+    
+
+    // Handle form submission
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Update user data
+      const formData = new FormData(this);
+      currentUser.fullName = formData.get('fullName');
+      currentUser.email = formData.get('email');
+      currentUser.phone = formData.get('phone');
+      currentUser.location = formData.get('location');
+      currentUser.jobTitle = formData.get('jobTitle');
+      currentUser.department = formData.get('department');
+      currentUser.experience = formData.get('experience');
+      currentUser.linkedin = formData.get('linkedin');
+      currentUser.bio = formData.get('bio');
+      
+      // In real app, save to database
+      console.log('Saving user data:', currentUser);
+      
+      // Show success message
+      const successAlert = document.createElement('div');
+      successAlert.className = 'alert alert-success';
+      successAlert.innerHTML = '<strong>Success!</strong> Your profile has been updated and will appear on the company website.';
+      
+      this.parentNode.insertBefore(successAlert, this);
+      
+      // Remove success message after 5 seconds
+      setTimeout(() => {
+        successAlert.remove();
+      }, 5000);
+      
+      // Update header and stats
+      loadUserData();
+      updateStats();
+    });
+
+    function previewProfile() {
+      // Create a preview of how the profile will look on the website
+      const previewData = {
+        name: currentUser.fullName,
+        role: currentUser.jobTitle,
+        bio: currentUser.bio,
+        skills: currentUser.skills,
+        location: currentUser.location
+      };
+      
+      alert(`Preview:\n\nName: ${previewData.name}\nRole: ${previewData.role}\nLocation: ${previewData.location}\nBio: ${previewData.bio}\nSkills: ${previewData.skills.join(', ')}`);
+    }
+
+    // Allow adding skills with Enter key
+    document.getElementById('newSkill').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        addSkill();
+      }
+    });
+
+    // Profile Photo Upload Functions
+    function setupPhotoUpload() {
+      const photoInput = document.getElementById('profilePhoto');
+      const photoPreview = document.getElementById('photoPreview');
+      const photoPlaceholder = document.getElementById('photoPlaceholder');
+      const removeBtn = document.getElementById('removePhotoBtn');
+
+      photoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          // Validate file size (max 2MB)
+          if (file.size > 2 * 1024 * 1024) {
+            alert('File size must be less than 2MB');
+            return;
+          }
+
+          // Validate file type
+          if (!file.type.startsWith('image/')) {
+            alert('Please select a valid image file');
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const imageData = e.target.result;
+            
+            // Update current user data
+            currentUser.profileImage = imageData;
+            profileManager.updateAssociate(currentUser.id, { profileImage: imageData });
+            
+            // Update preview
+            displayCurrentPhoto();
+            updateStats();
+            
+            showAlert('Profile photo updated successfully!', 'success');
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    function displayCurrentPhoto() {
+      const photoPreview = document.getElementById('photoPreview');
+      const photoPlaceholder = document.getElementById('photoPlaceholder');
+      const removeBtn = document.getElementById('removePhotoBtn');
+
+      if (currentUser.profileImage) {
+        photoPreview.src = currentUser.profileImage;
+        photoPreview.style.display = 'block';
+        photoPlaceholder.style.display = 'none';
+        removeBtn.style.display = 'inline-block';
+        
+        // Update header avatar
+        const headerAvatar = document.getElementById('user-avatar');
+        headerAvatar.innerHTML = `<img src="${currentUser.profileImage}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+      } else {
+        photoPreview.style.display = 'none';
+        photoPlaceholder.style.display = 'flex';
+        removeBtn.style.display = 'none';
+        
+        // Reset header avatar to initials
+        const headerAvatar = document.getElementById('user-avatar');
+        const initials = currentUser.fullName.split(' ').map(n => n[0]).join('');
+        headerAvatar.innerHTML = initials;
+      }
+    }
+
+    function removeProfilePhoto() {
+      if (confirm('Are you sure you want to remove your profile photo?')) {
+        currentUser.profileImage = null;
+        profileManager.updateAssociate(currentUser.id, { profileImage: null });
+        
+        displayCurrentPhoto();
+        updateStats();
+        
+        // Reset file input
+        document.getElementById('profilePhoto').value = '';
+        
+        showAlert('Profile photo removed successfully!', 'success');
+      }
+    }
+
+    // Initialize photo upload functionality
+    setupPhotoUpload();
+    displayCurrentPhoto();
+  </script>
+</body>
+</html>

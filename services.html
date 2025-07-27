@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Nexlify Tech</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background-color: #06142E;
+      color: #fff;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid #1BA098;
+      box-shadow: 0 4px 15px rgba(27, 160, 152, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(27, 160, 152, 0.5);
+    }
+    
+    .brand-text h1 {
+      margin: 0;
+      font-size: 1.8em;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1BA098, #00E5FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .brand-text p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #B0BEC5;
+      font-weight: 300;
+    }
+    
+    nav {
+      flex-shrink: 0;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin: 5px 15px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li a:hover {
+      background-color: #1BA098;
+    }
+    .active {
+      background-color: #1BA098;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #06142E;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2.2em;
+    }
+    h3 {
+      color: #06142E;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .service-card {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, #1BA098, #06142E);
+    }
+    .service-icon {
+      font-size: 3.5em;
+      color: #1BA098;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .service-features {
+      list-style: none;
+      margin: 20px 0;
+    }
+    .service-features li {
+      padding: 8px 0;
+      padding-left: 25px;
+      position: relative;
+    }
+    .service-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #1BA098;
+      font-weight: bold;
+    }
+    .process-section {
+      background-color: #fff;
+      padding: 40px;
+      margin: 40px 0;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .process-step {
+      text-align: center;
+      padding: 20px;
+    }
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 0 auto 15px;
+    }
+    .pricing-section {
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      color: white;
+      padding: 50px 30px;
+      border-radius: 15px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    footer {
+      background-color: #06142E;
+      color: #fff;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 25px;
+      background-color: #1BA098;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #158f87;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: white;
+      color: #06142E;
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+      
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .logo-section {
+        justify-content: center;
+      }
+      
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .brand-text h1 {
+        font-size: 1.5em;
+      }
+      
+      .brand-text p {
+        font-size: 0.8em;
+      }
+      
+      nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      nav ul li {
+        margin: 5px;
+      }
+      
+      nav ul li a {
+        padding: 8px 12px;
+        font-size: 0.9em;
+      }
+      section {
+        padding: 30px 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.8em;
+      }
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="nexlify-logo.jpg" alt="Nexlify Tech Logo" class="logo">
+        <div class="brand-text">
+          <h1>Nexlify Tech</h1>
+          <p>Building Smart Solutions for the Digital Age</p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <h1>Our Services</h1>
+    <p style="text-align: center; font-size: 1.2em; margin-bottom: 40px;">Comprehensive Technology Solutions for Modern Businesses</p>
+  </section>
+
+  <!-- Services Grid -->
+  <section>
+    <div class="service-grid">
+      <!-- E-commerce Development -->
+      <div class="service-card">
+        <div class="service-icon">🛒</div>
+        <h3>Smart E-commerce Apps</h3>
+        <p>Custom mobile and web applications designed for seamless online shopping experiences across Africa.</p>
+        <ul class="service-features">
+          <li>Custom shopping cart solutions</li>
+          <li>Secure payment gateway integration</li>
+          <li>Mobile-responsive design</li>
+          <li>Inventory management systems</li>
+          <li>AI-powered product recommendations</li>
+          <li>Multi-vendor marketplace support</li>
+        </ul>
+        <a href="contact.html" class="btn">Get Quote</a>
+      </div>
+
+      <!-- Backend Development -->
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Backend & Security</h3>
+        <p>Robust, secure backend systems built with Django and PostgreSQL for reliable performance and data protection.</p>
+        <ul class="service-features">
+          <li>Django web framework development</li>
+          <li>PostgreSQL database design</li>
+          <li>RESTful API development</li>
+          <li>Security implementation</li>
+          <li>Performance optimization</li>
+          <li>Cloud deployment & scaling</li>
+        </ul>
+        <a href="contact.html" class="btn">Get Quote</a>
+      </div>
+
+      <!-- Frontend Development -->
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>UI/UX Design & Frontend</h3>
+        <p>Beautiful, user-friendly interfaces that enhance customer engagement and provide exceptional user experiences.</p>
+        <ul class="service-features">
+          <li>Modern responsive web design</li>
+          <li>React & JavaScript development</li>
+          <li>User experience optimization</li>
+          <li>Cross-platform compatibility</li>
+          <li>Interactive prototyping</li>
+          <li>Accessibility compliance</li>
+        </ul>
+        <a href="contact.html" class="btn">Get Quote</a>
+      </div>
+
+      <!-- Tech Consulting -->
+      <div class="service-card">
+        <div class="service-icon">💡</div>
+        <h3>Tech Consulting</h3>
+        <p>Strategic technology guidance to help businesses leverage digital solutions effectively and efficiently.</p>
+        <ul class="service-features">
+          <li>Technology strategy planning</li>
+          <li>System architecture design</li>
+          <li>Digital transformation roadmaps</li>
+          <li>Performance audits</li>
+          <li>Technology stack recommendations</li>
+          <li>Training & knowledge transfer</li>
+        </ul>
+        <a href="contact.html" class="btn">Get Quote</a>
+      </div>
+
+      <!-- Mobile App Development -->
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Mobile App Development</h3>
+        <p>Native and cross-platform mobile applications that bring your business directly to your customers' pockets.</p>
+        <ul class="service-features">
+          <li>iOS & Android development</li>
+          <li>Cross-platform solutions</li>
+          <li>Progressive Web Apps (PWA)</li>
+          <li>App Store optimization</li>
+          <li>Push notification systems</li>
+          <li>Offline functionality</li>
+        </ul>
+        <a href="contact.html" class="btn">Get Quote</a>
+      </div>
+
+      <!-- Coming Soon Services -->
+      <div class="service-card" style="opacity: 0.8;">
+        <div class="service-icon">🚀</div>
+        <h3>AI & Machine Learning</h3>
+        <p>Intelligent solutions powered by artificial intelligence and machine learning algorithms.</p>
+        <ul class="service-features">
+          <li>Recommendation engines</li>
+          <li>Predictive analytics</li>
+          <li>Natural language processing</li>
+          <li>Computer vision solutions</li>
+          <li>Chatbot development</li>
+          <li>Data analysis & insights</li>
+        </ul>
+        <span style="background: #ff6b6b; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8em;">Coming Soon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Process -->
+  <section>
+    <div class="process-section">
+      <h2>Our Development Process</h2>
+      <p style="text-align: center; margin-bottom: 30px;">We follow a proven methodology to ensure your project is delivered on time, within budget, and exceeds expectations.</p>
+      
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h4>Discovery & Planning</h4>
+          <p>We understand your requirements, goals, and target audience to create a comprehensive project plan.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h4>Design & Prototype</h4>
+          <p>Our team creates wireframes and prototypes to visualize the solution before development begins.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h4>Development</h4>
+          <p>We build your solution using best practices, modern technologies, and agile development methodologies.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h4>Testing & Quality Assurance</h4>
+          <p>Rigorous testing ensures your application is bug-free, secure, and performs optimally across all platforms.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">5</div>
+          <h4>Deployment & Launch</h4>
+          <p>We handle the deployment process and ensure a smooth launch of your application.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">6</div>
+          <h4>Support & Maintenance</h4>
+          <p>Ongoing support and maintenance to keep your application updated, secure, and running smoothly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Philosophy -->
+  <section>
+    <div class="pricing-section">
+      <h2>Transparent Pricing</h2>
+      <p style="font-size: 1.1em; margin-bottom: 30px;">We believe in honest, transparent pricing with no hidden fees. Every project is unique, so we provide customized quotes based on your specific requirements.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 30px;">
+        <div>
+          <h4>Small Projects</h4>
+          <p>Starting from $500</p>
+          <p style="font-size: 0.9em;">Basic websites, simple apps</p>
+        </div>
+        <div>
+          <h4>Medium Projects</h4>
+          <p>$1,000 - $5,000</p>
+          <p style="font-size: 0.9em;">E-commerce sites, custom apps</p>
+        </div>
+        <div>
+          <h4>Enterprise Solutions</h4>
+          <p>$5,000+</p>
+          <p style="font-size: 0.9em;">Complex systems, custom development</p>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-secondary" style="margin-top: 30px;">Get Custom Quote</a>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section style="text-align: center; padding: 50px 20px;">
+    <h2>Ready to Get Started?</h2>
+    <p style="font-size: 1.1em; margin-bottom: 30px;">Let's discuss your project and create a solution that drives your business forward.</p>
+    <a href="contact.html" class="btn" style="margin-right: 15px;">Start Your Project</a>
+    <a href="projects.html" class="btn" style="background: transparent; border: 2px solid #1BA098; color: #1BA098;">View Our Work</a>
+  </section>
+
+  <footer>
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; padding: 20px;">
+      <div>
+        <h3 style="margin-bottom: 15px;">Nexlify Tech</h3>
+        <p>Building Smart Solutions for the Digital Age</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Quick Links</h4>
+        <p><a href="about.html" style="color: #1BA098; text-decoration: none;">About Us</a></p>
+        <p><a href="services.html" style="color: #1BA098; text-decoration: none;">Services</a></p>
+        <p><a href="projects.html" style="color: #1BA098; text-decoration: none;">Projects</a></p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Contact</h4>
+        <p>nexlifytech06@gmail.com</p>
+        <p>+237 683821011</p>
+      </div>
+    </div>
+    <div style="text-align: center; border-top: 1px solid #1BA098; padding-top: 20px; margin-top: 20px;">
+      <p>&copy; 2025 Nexlify Tech. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

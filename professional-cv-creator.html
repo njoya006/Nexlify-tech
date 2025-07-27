@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional CV Creator</title>
+    <link rel="stylesheet" href="cv-styles-professional.css">
+    <style>
+        /* Main page styles */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 30px;
+            min-height: 100vh;
+        }
+        
+        .form-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            height: fit-content;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .preview-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ecf0f1;
+            border-radius: 6px;
+            font-size: 0.9em;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f8c8d;
+            transform: translateY(-1px);
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+            transform: translateY(-1px);
+        }
+        
+        .preview-title {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .empty-preview {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 50px 20px;
+            font-style: italic;
+        }
+        
+        .help-text {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 3px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 10px;
+            }
+            
+            .form-panel,
+            .preview-panel {
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Form Panel -->
+        <div class="form-panel">
+            <h1>Professional CV Creator</h1>
+            <form>
+                <!-- Personal Information -->
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" placeholder="John Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="jobTitle">Job Title *</label>
+                    <input type="text" id="jobTitle" placeholder="Software Engineer">
+                </div>
+                
+                <div class="form-group">
+                    <label for="profilePhoto">Profile Photo</label>
+                    <input type="file" id="profilePhoto" accept="image/*">
+                    <div class="help-text">Upload a professional headshot (optional)</div>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="john.doe@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" placeholder="City, Country">
+                </div>
+                
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn</label>
+                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/johndoe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="github">GitHub</label>
+                    <input type="url" id="github" placeholder="https://github.com/johndoe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="url" id="website" placeholder="https://johndoe.com">
+                </div>
+                
+                <!-- Professional Summary -->
+                <div class="form-group">
+                    <label for="summary">Professional Summary</label>
+                    <textarea id="summary" rows="4" placeholder="Brief overview of your professional background and key achievements..."></textarea>
+                </div>
+                
+                <!-- Technical Skills -->
+                <div class="form-group">
+                    <label for="techstack">Tech Stack</label>
+                    <input type="text" id="techstack" placeholder="JavaScript, Python, React, Node.js">
+                    <div class="help-text">Separate with commas</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="skills">Skills</label>
+                    <textarea id="skills" rows="3" placeholder="Problem Solving, Leadership, Communication, Project Management"></textarea>
+                    <div class="help-text">Separate with commas</div>
+                </div>
+                
+                <!-- Experience -->
+                <div class="form-group">
+                    <label for="experience">Work Experience</label>
+                    <textarea id="experience" rows="6" placeholder="Senior Software Engineer | Company Name | 2020-Present&#10;• Led development of microservices architecture&#10;• Managed team of 5 developers&#10;&#10;Software Engineer | Previous Company | 2018-2020&#10;• Developed React applications"></textarea>
+                    <div class="help-text">Each job on a new line, use bullet points for achievements</div>
+                </div>
+                
+                <!-- Education -->
+                <div class="form-group">
+                    <label for="education">Education</label>
+                    <textarea id="education" rows="4" placeholder="Bachelor of Science in Computer Science | University Name | 2018&#10;• Graduated Magna Cum Laude&#10;• Relevant coursework: Data Structures, Algorithms"></textarea>
+                </div>
+                
+                <!-- Projects -->
+                <div class="form-group">
+                    <label for="projects">Projects</label>
+                    <textarea id="projects" rows="4" placeholder="E-commerce Platform | 2023&#10;• Built full-stack application with React and Node.js&#10;• Implemented payment integration"></textarea>
+                </div>
+                
+                <!-- Certifications -->
+                <div class="form-group">
+                    <label for="certifications">Certifications</label>
+                    <textarea id="certifications" rows="3" placeholder="AWS Certified Solutions Architect | 2023&#10;Microsoft Azure Fundamentals | 2022"></textarea>
+                </div>
+                
+                <!-- Awards -->
+                <div class="form-group">
+                    <label for="awards">Awards & Honors</label>
+                    <textarea id="awards" rows="3" placeholder="Employee of the Year | 2022&#10;Best Innovation Award | 2021"></textarea>
+                </div>
+                
+                <!-- Languages -->
+                <div class="form-group">
+                    <label for="languages">Languages</label>
+                    <input type="text" id="languages" placeholder="English (Native), Spanish (Fluent), French (Intermediate)">
+                    <div class="help-text">Separate with commas</div>
+                </div>
+                
+                <!-- Interests -->
+                <div class="form-group">
+                    <label for="interests">Interests</label>
+                    <input type="text" id="interests" placeholder="Photography, Travel, Technology, Reading">
+                    <div class="help-text">Separate with commas</div>
+                </div>
+                
+                <!-- Volunteer Work -->
+                <div class="form-group">
+                    <label for="volunteer">Volunteer Work</label>
+                    <textarea id="volunteer" rows="3" placeholder="Code Mentor | Local Coding Bootcamp | 2020-Present"></textarea>
+                </div>
+                
+                <!-- Additional Fields -->
+                <div class="form-group">
+                    <label for="twitter">Twitter</label>
+                    <input type="url" id="twitter" placeholder="https://twitter.com/johndoe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="stackoverflow">Stack Overflow</label>
+                    <input type="url" id="stackoverflow" placeholder="https://stackoverflow.com/users/johndoe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="references">References</label>
+                    <textarea id="references" rows="3" placeholder="Available upon request"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="availability">Availability</label>
+                    <input type="text" id="availability" placeholder="Available immediately">
+                </div>
+                
+                <div class="form-group">
+                    <label for="custom">Custom Section</label>
+                    <textarea id="custom" rows="3" placeholder="Add any additional information..."></textarea>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <button type="button" id="generateBtn" class="btn-primary">Generate CV</button>
+                    <button type="button" id="viewBtn" class="btn-secondary">View CV</button>
+                    <button type="button" id="downloadBtn" class="btn-success">Download</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Preview Panel -->
+        <div class="preview-panel">
+            <h2 class="preview-title">Live Preview</h2>
+            <div id="cvPreview">
+                <div class="empty-preview">
+                    👆 Fill out the form on the left and click "Generate CV" to see your professional CV preview here
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="cv-creator-new.js"></script>
+</body>
+</html>

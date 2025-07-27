@@ -1,0 +1,851 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nexlify Tech - Building smart e-commerce solutions and digital innovations for African markets. Expert Django, React, app development.">
+  <meta name="keywords" content="web development, e-commerce, mobile apps, Django, React, African tech, Cameroon developers">
+  <meta name="author" content="Nexlify Tech">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexlifytech.com/">
+  <meta property="og:title" content="Nexlify Tech - Smart Solutions for Digital Age">
+  <meta property="og:description" content="Building smart e-commerce solutions and digital innovations for African markets.">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://nexlifytech.com/">
+  <meta property="twitter:title" content="Nexlify Tech - Smart Solutions for Digital Age">
+  <meta property="twitter:description" content="Building smart e-commerce solutions and digital innovations for African markets.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <title>Nexlify Tech - Building Smart Solutions for the Digital Age</title>
+  
+  <!-- Google Analytics 4 (Replace GA_MEASUREMENT_ID with your actual ID when you get one) -->
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+  -->
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background-color: #06142E;
+      color: #fff;
+      padding: 10px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid #1BA098;
+      box-shadow: 0 4px 15px rgba(27, 160, 152, 0.3);
+    }
+    
+    .brand-text h1 {
+      margin: 0;
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #1BA098;
+    }
+    
+    .brand-text p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #B0BEC5;
+      font-weight: 300;
+    }
+    
+    nav {
+      flex-shrink: 0;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin: 5px 15px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      font-size: 1em;
+    }
+    nav ul li a:hover {
+      background-color: #1BA098;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #06142E;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 2.2em;
+    }
+    h3 {
+      color: #06142E;
+      margin-bottom: 10px;
+    }
+    .team-member {
+      background-color: #fff;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    footer {
+      background-color: #06142E;
+      color: #fff;
+      padding: 40px 20px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 25px;
+      background-color: #1BA098;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #158f87;
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+      
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .logo-section {
+        justify-content: center;
+      }
+      
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .brand-text h1 {
+        font-size: 1.5em;
+      }
+      
+      .brand-text p {
+        font-size: 0.8em;
+      }
+      
+      nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      nav ul li {
+        margin: 5px;
+      }
+      
+      nav ul li a {
+        padding: 8px 12px;
+        font-size: 0.9em;
+      }
+      section {
+        padding: 30px 15px;
+      }
+      h2 {
+        font-size: 1.8em;
+      }
+      
+      /* Mobile hero section */
+      #home h1 {
+        font-size: 2.5em !important;
+      }
+      #home p {
+        font-size: 1.1em !important;
+      }
+      #home .stat-item h3 {
+        font-size: 2em !important;
+      }
+      
+      /* Mobile service cards */
+      .service-card {
+        margin-bottom: 20px;
+      }
+      
+      /* Mobile team section */
+      .team-member {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      
+      /* Mobile project cards */
+      .project-card {
+        margin-bottom: 25px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      #home {
+        padding: 50px 15px !important;
+      }
+      
+      #home h1 {
+        font-size: 2em !important;
+      }
+      
+      .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        text-align: center;
+      }
+      
+      /* Stack hero buttons vertically on very small screens */
+      #home .btn {
+        width: 100%;
+        margin: 8px 0;
+      }
+    }
+    
+    /* Scroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .scroll-to-top.show {
+      opacity: 1;
+    }
+    
+    .scroll-to-top:hover {
+      transform: translateY(-3px);
+    }
+    
+    /* Loading animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #1BA098;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Fade in animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Enhanced service cards */
+    .service-card {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(27, 160, 152, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .service-card:hover::before {
+      left: 100%;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="nexlify-logo.jpg" alt="Nexlify Tech Logo" class="logo">
+        <div class="brand-text">
+          <h1>Nexlify Tech</h1>
+          <p>Building Smart Solutions for the Digital Age</p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="associates.html">Associates</a></li>
+          <li><a href="cv.html">CV</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section id="home" style="background: linear-gradient(135deg, #06142E, #1BA098); color: white; padding: 100px 20px; text-align: center; position: relative; overflow: hidden;">
+    <div class="animate-on-scroll hero-content">
+    <!-- Background animation -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background-image: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><circle cx=\"50\" cy=\"50\" r=\"2\" fill=\"white\"><animate attributeName=\"r\" values=\"2;20;2\" dur=\"3s\" repeatCount=\"indefinite\"/><animate attributeName=\"opacity\" values=\"1;0;1\" dur=\"3s\" repeatCount=\"indefinite\"/></circle></svg>'); background-size: 50px 50px;"></div>
+    
+    <div class="animate-on-scroll" style="position: relative; z-index: 1;">
+      <h1 style="font-size: 3.5em; margin-bottom: 20px; font-weight: 700;">Nexlify Tech</h1>
+      <p style="font-size: 1.4em; margin-bottom: 20px; font-weight: 300;">Building Smart Solutions for the Digital Age</p>
+      <p style="font-size: 1.1em; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">Revolutionizing e-commerce across Africa with seamless transactions, smart recommendations, and verified sellers.</p>
+      
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+        <a href="contact.html" class="btn" style="font-size: 1.1em; padding: 18px 35px; background: white; color: #06142E; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">Start Your Project</a>
+        <a href="projects.html" class="btn" style="font-size: 1.1em; padding: 18px 35px; background: transparent; border: 2px solid white; color: white;">View Our Work</a>
+      </div>
+      
+      <!-- Stats section -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <div class="stat-item">
+          <h3 style="font-size: 2.5em; margin-bottom: 5px; color: white;">2+</h3>
+          <p style="font-size: 0.9em; opacity: 0.9;">Projects in Development</p>
+        </div>
+        <div class="stat-item">
+          <h3 style="font-size: 2.5em; margin-bottom: 5px; color: white;">2025</h3>
+          <p style="font-size: 0.9em; opacity: 0.9;">Founded</p>
+        </div>
+        <div class="stat-item">
+          <h3 style="font-size: 2.5em; margin-bottom: 5px; color: white;">100%</h3>
+          <p style="font-size: 0.9em; opacity: 0.9;">Client Satisfaction</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Nexlify Tech</h2>
+    <p>We are a passionate tech startup focused on delivering smart e-commerce solutions and digital innovations. Our mission is to bridge the gap between technology and everyday commerce across Africa.</p>
+    <p>From secure payment systems to AI-powered recommendations, we're building the future of digital commerce one solution at a time.</p>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="animate-on-scroll">
+    <h2>Our Services</h2>
+    <p style="text-align: center; font-size: 1.1em; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">We deliver cutting-edge technology solutions tailored for African markets</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px;">
+      <div class="service-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3em; margin-bottom: 20px; color: #1BA098;">🛒</div>
+        <h3 style="margin-bottom: 15px;">Smart E-commerce Apps</h3>
+        <p style="color: #666; line-height: 1.6;">Custom mobile and web applications for seamless online shopping experiences across Africa.</p>
+        <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
+          <li>Multi-vendor marketplaces</li>
+          <li>Payment gateway integration</li>
+          <li>Mobile-first design</li>
+          <li>AI recommendations</li>
+        </ul>
+        <a href="services.html#ecommerce" class="btn" style="margin-top: 15px;">Learn More</a>
+      </div>
+      <div class="service-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3em; margin-bottom: 20px; color: #1BA098;">⚙️</div>
+        <h3 style="margin-bottom: 15px;">Backend & Security</h3>
+        <p style="color: #666; line-height: 1.6;">Robust, secure backend systems with Django and PostgreSQL for reliable performance.</p>
+        <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
+          <li>Django development</li>
+          <li>Database optimization</li>
+          <li>API development</li>
+          <li>Security implementation</li>
+        </ul>
+        <a href="services.html#backend" class="btn" style="margin-top: 15px;">Learn More</a>
+      </div>
+      <div class="service-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3em; margin-bottom: 20px; color: #1BA098;">🎨</div>
+        <h3 style="margin-bottom: 15px;">UI/UX Design</h3>
+        <p style="color: #666; line-height: 1.6;">Beautiful, user-friendly interfaces that enhance customer engagement and satisfaction.</p>
+        <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
+          <li>Responsive design</li>
+          <li>User experience optimization</li>
+          <li>Interactive prototypes</li>
+          <li>Brand consistency</li>
+        </ul>
+        <a href="services.html#design" class="btn" style="margin-top: 15px;">Learn More</a>
+      </div>
+      <div class="service-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 3em; margin-bottom: 20px; color: #1BA098;">💡</div>
+        <h3 style="margin-bottom: 15px;">Tech Consulting</h3>
+        <p style="color: #666; line-height: 1.6;">Strategic technology guidance to help businesses leverage digital solutions effectively.</p>
+        <ul style="text-align: left; margin: 20px 0; padding-left: 20px; color: #666;">
+          <li>Technology strategy</li>
+          <li>Digital transformation</li>
+          <li>Performance audits</li>
+          <li>Training & support</li>
+        </ul>
+        <a href="services.html#consulting" class="btn" style="margin-top: 15px;">Learn More</a>
+      </div>
+    </div>
+  </section>  <section id="team" class="animate-on-scroll">
+    <h2>Meet Our Team</h2>
+    <p style="text-align: center; font-size: 1.1em; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">The passionate minds behind Nexlify Tech's innovation</p>
+    
+    <!-- Dynamic team members container -->
+    <div id="team-members" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; margin-top: 40px;">
+      <!-- Team members will be loaded dynamically by profile-system.js -->
+    </div>
+    
+    <!-- Admin access for team management -->
+    <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+      <p style="color: #666; margin-bottom: 15px;">Team Management</p>
+      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <a href="admin-dashboard.html" class="btn" style="background: #06142E;">🔧 Admin Dashboard</a>
+        <a href="associate-portal.html" class="btn" style="background: #1BA098;">👤 Associate Portal</a>
+        <a href="cv.html" class="btn" style="background: transparent; border: 2px solid #1BA098; color: #1BA098;">📄 View All CVs</a>
+      </div>
+    </div>
+  </section>  <section id="projects" class="animate-on-scroll">
+    <h2>Our Projects</h2>
+    <p style="text-align: center; font-size: 1.1em; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Innovative solutions we're building for the future</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 40px;">
+      <div class="project-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; overflow: hidden;">
+        <!-- Project icon -->
+        <div style="font-size: 3em; margin-bottom: 20px; color: #1BA098;">🛍️</div>
+        
+        <!-- Status badge -->
+        <div style="position: absolute; top: 20px; right: 20px; background: #ff9800; color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.8em; font-weight: bold;">In Development</div>
+        
+        <h3 style="margin-bottom: 15px;">Nexlify Shop</h3>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Revolutionary shopping app connecting buyers and sellers across Africa with seamless transactions, smart recommendations, and verified sellers.</p>
+        
+        <!-- Key features -->
+        <div style="margin: 20px 0;">
+          <h5 style="color: #06142E; margin-bottom: 10px;">Key Features:</h5>
+          <ul style="color: #666; padding-left: 20px; font-size: 0.9em;">
+            <li>AI-powered recommendations</li>
+            <li>Secure payment gateway</li>
+            <li>Verified seller system</li>
+            <li>Real-time tracking</li>
+          </ul>
+        </div>
+        
+        <!-- Tech stack -->
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 15px 0;">
+          <span style="background: #e8f4f8; color: #1BA098; padding: 3px 8px; border-radius: 10px; font-size: 0.7em; font-weight: bold;">Django</span>
+          <span style="background: #e8f4f8; color: #1BA098; padding: 3px 8px; border-radius: 10px; font-size: 0.7em; font-weight: bold;">React</span>
+          <span style="background: #e8f4f8; color: #1BA098; padding: 3px 8px; border-radius: 10px; font-size: 0.7em; font-weight: bold;">PostgreSQL</span>
+        </div>
+        
+        <p style="font-size: 0.9em; color: #1BA098; font-weight: bold; margin-top: 15px;">Expected Launch: Q3 2025</p>
+      </div>
+      
+      <div class="project-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; overflow: hidden;">
+        <!-- Project icon -->
+        <div style="font-size: 3em; margin-bottom: 20px; color: #1BA098;">🍽️</div>
+        
+        <!-- Status badge -->
+        <div style="position: absolute; top: 20px; right: 20px; background: #2196f3; color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.8em; font-weight: bold;">Beta Testing</div>
+        
+        <h3 style="margin-bottom: 15px;">ChopSmo Meal Planner</h3>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Smart meal planning application to help users organize their meals, track nutrition, and discover new recipes.</p>
+        
+        <!-- Key features -->
+        <div style="margin: 20px 0;">
+          <h5 style="color: #06142E; margin-bottom: 10px;">Key Features:</h5>
+          <ul style="color: #666; padding-left: 20px; font-size: 0.9em;">
+            <li>Weekly meal planning</li>
+            <li>Nutrition tracking</li>
+            <li>Recipe discovery</li>
+            <li>Grocery list generation</li>
+          </ul>
+        </div>
+        
+        <!-- Tech stack -->
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 15px 0;">
+          <span style="background: #e8f4f8; color: #1BA098; padding: 3px 8px; border-radius: 10px; font-size: 0.7em; font-weight: bold;">React Native</span>
+          <span style="background: #e8f4f8; color: #1BA098; padding: 3px 8px; border-radius: 10px; font-size: 0.7em; font-weight: bold;">Node.js</span>
+          <span style="background: #e8f4f8; color: #1BA098; padding: 3px 8px; border-radius: 10px; font-size: 0.7em; font-weight: bold;">MongoDB</span>
+        </div>
+        
+        <p style="font-size: 0.9em; color: #2196f3; font-weight: bold; margin-top: 15px;">Currently in Beta Testing</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="projects.html" class="btn" style="padding: 15px 30px;">View All Projects</a>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section style="background: linear-gradient(135deg, #1BA098, #06142E); color: white; text-align: center; padding: 50px 20px; margin: 40px 0;">
+    <h2>Ready to Build Something Amazing?</h2>
+    <p style="font-size: 1.1em; margin-bottom: 30px;">Let's discuss your next digital project and bring your ideas to life.</p>
+    <a href="contact.html" class="btn" style="background: white; color: #06142E; font-weight: bold;">Get In Touch</a>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="animate-on-scroll" style="background: white; padding: 50px 20px; margin: 40px 0; border-radius: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+    <h2>What Our Clients Say</h2>
+    <p style="text-align: center; font-size: 1.1em; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Don't just take our word for it - hear from businesses we've helped transform</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+      <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; border-left: 4px solid #1BA098;">
+        <div style="color: #1BA098; font-size: 2em; margin-bottom: 15px;">"</div>
+        <p style="font-style: italic; color: #666; line-height: 1.6; margin-bottom: 20px;">Working with Nexlify Tech has been a game-changer for our business. Their expertise in e-commerce development helped us launch our online store ahead of schedule.</p>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #1BA098, #06142E); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">MK</div>
+          <div>
+            <p style="font-weight: bold; color: #06142E;">Michael Kamga</p>
+            <p style="color: #666; font-size: 0.9em;">CEO, Douala Marketplace</p>
+          </div>
+        </div>
+      </div>
+      
+      <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; border-left: 4px solid #1BA098;">
+        <div style="color: #1BA098; font-size: 2em; margin-bottom: 15px;">"</div>
+        <p style="font-style: italic; color: #666; line-height: 1.6; margin-bottom: 20px;">The team's attention to security and performance optimization gave us confidence in our platform. Highly recommended for any serious tech project.</p>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #1BA098, #06142E); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">SA</div>
+          <div>
+            <p style="font-weight: bold; color: #06142E;">Sarah Atanga</p>
+            <p style="color: #666; font-size: 0.9em;">CTO, Yaounde Tech Hub</p>
+          </div>
+        </div>
+      </div>
+      
+      <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; border-left: 4px solid #1BA098;">
+        <div style="color: #1BA098; font-size: 2em; margin-bottom: 15px;">"</div>
+        <p style="font-style: italic; color: #666; line-height: 1.6; margin-bottom: 20px;">Professional, reliable, and innovative. Nexlify Tech delivered exactly what we needed and more. Looking forward to future collaborations.</p>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #1BA098, #06142E); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">JN</div>
+          <div>
+            <p style="font-weight: bold; color: #06142E;">Jean Ngono</p>
+            <p style="color: #666; font-size: 0.9em;">Founder, Afri-Solutions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <p style="color: #666; margin-bottom: 20px;">Join our growing list of satisfied clients</p>
+      <a href="contact.html" class="btn">Start Your Project Today</a>
+    </div>
+  </section>  <section id="contact">
+    <h2>Contact Us</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
+      <div>
+        <h3>Get In Touch</h3>
+        <p><strong>Email:</strong> nexlifytech06@gmail.com</p>
+        <p><strong>Phone:</strong> +237 683821011</p>
+        <p><strong>Location:</strong> Cameroon</p>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <p>Stay updated with our latest projects and tech insights:</p>
+        <div style="margin-top: 15px;">
+          <a href="#" class="btn" style="margin-right: 10px; margin-bottom: 10px;">LinkedIn</a>
+          <a href="#" class="btn" style="margin-right: 10px; margin-bottom: 10px;">GitHub</a>
+          <a href="#" class="btn" style="margin-bottom: 10px;">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="contact.html" class="btn">Send Us a Message</a>
+    </div>
+  </section>  <footer>
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; padding: 20px;">
+      <div>
+        <h3 style="margin-bottom: 15px;">Nexlify Tech</h3>
+        <p>Building Smart Solutions for the Digital Age</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Quick Links</h4>
+        <p><a href="about.html" style="color: #1BA098; text-decoration: none;">About Us</a></p>
+        <p><a href="services.html" style="color: #1BA098; text-decoration: none;">Services</a></p>
+        <p><a href="projects.html" style="color: #1BA098; text-decoration: none;">Projects</a></p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Contact</h4>
+        <p>nexlifytech06@gmail.com</p>
+        <p>+237 683821011</p>
+      </div>
+    </div>
+    <div style="text-align: center; border-top: 1px solid #1BA098; padding-top: 20px; margin-top: 20px;">
+      <p>&copy; 2025 Nexlify Tech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scroll to top button -->
+  <button class="scroll-to-top" id="scrollToTop" title="Back to top">↑</button>
+
+  <script>
+    // Enhanced JavaScript functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      initScrollToTop();
+      initSmoothScrolling();
+      initScrollAnimations();
+      initPerformanceTracking();
+    });
+
+    // Scroll to top functionality
+    function initScrollToTop() {
+      const scrollToTopBtn = document.getElementById('scrollToTop');
+      
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          scrollToTopBtn.classList.add('show');
+        } else {
+          scrollToTopBtn.classList.remove('show');
+        }
+      });
+      
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        
+        // Track scroll to top action
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'scroll_to_top', {
+            'event_category': 'engagement',
+            'event_label': 'homepage'
+          });
+        }
+      });
+    }
+
+    // Smooth scrolling for anchor links
+    function initSmoothScrolling() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    }
+
+    // Intersection Observer for scroll animations
+    function initScrollAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
+      // Observe elements with animation class
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Performance tracking
+    function initPerformanceTracking() {
+      // Track page load time
+      window.addEventListener('load', function() {
+        const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+        console.log('Page load time:', loadTime + 'ms');
+        
+        // Send to analytics if available
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'page_load_time', {
+            'event_category': 'performance',
+            'value': loadTime
+          });
+        }
+      });
+
+      // Track button clicks
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const buttonText = this.textContent.trim();
+          console.log('Button clicked:', buttonText);
+          
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'button_click', {
+              'event_category': 'engagement',
+              'event_label': buttonText
+            });
+          }
+        });
+      });
+    }
+
+    // Service card hover effects
+    document.addEventListener('DOMContentLoaded', function() {
+      const serviceCards = document.querySelectorAll('.service-card');
+      
+      serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+    });
+  </script>
+  
+  <!-- Dynamic Profile System -->
+  <script src="js/profile-system.js"></script>
+  
+  <!-- Team Members from Associates -->
+  <script>
+    // Load team members from associates.json
+    fetch('associates.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('team-members');
+        if (container && data.length > 0) {
+          container.innerHTML = data.map(associate => `
+            <div class="team-member" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease;">
+              <img src="${associate.photo}" alt="${associate.name}" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin-bottom: 20px; border: 4px solid #1BA098; box-shadow: 0 4px 15px rgba(27, 160, 152, 0.3);">
+              <h3 style="margin: 15px 0 8px 0; color: #06142E; font-size: 1.3em;">${associate.name}</h3>
+              <p style="color: #1BA098; font-weight: 600; margin-bottom: 15px; font-size: 1.1em;">${associate.role}</p>
+              <p style="color: #666; line-height: 1.6; margin-bottom: 20px; font-size: 0.95em;">${associate.bio}</p>
+              <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+                <a href="${associate.linkedin}" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: #0077B5; color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 3px 10px rgba(0, 119, 181, 0.3); transition: all 0.3s ease;" title="LinkedIn">
+                  <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='currentColor'><path d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.867-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.599 2 3.599 4.594v5.602z'/></svg>
+                </a>
+                ${associate.whatsapp ? `<a href="${associate.whatsapp}" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: #25D366; color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3); transition: all 0.3s ease;" title="WhatsApp">
+                  <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 32 32' fill='currentColor'><path d='M16 0c-8.837 0-16 7.163-16 16 0 2.837.742 5.527 2.148 7.938l-2.148 8.062 8.25-2.156c2.344 1.289 4.992 1.969 7.75 1.969 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.938c-2.563 0-5.063-.656-7.25-1.938l-.5-.281-4.906 1.281 1.312-4.781-.312-.5c-1.344-2.188-2.094-4.688-2.094-7.219 0-7.188 5.844-13.031 13.031-13.031s13.031 5.844 13.031 13.031c0 7.188-5.844 13.031-13.031 13.031zM23.438 19.219c-.406-.219-2.406-1.188-2.781-1.344-.375-.156-.656-.219-.938.219-.281.438-1.094 1.344-1.344 1.625-.25.281-.5.313-.906.094-.406-.219-1.719-.625-3.281-1.969-1.211-1.063-2.031-2.375-2.281-2.781-.25-.406-.027-.625.188-.844.188-.188.438-.5.656-.75.219-.25.281-.438.438-.719.156-.281.078-.531-.031-.75-.109-.219-.938-2.25-1.281-3.094-.344-.844-.688-.719-.938-.719-.25 0-.531-.031-.812-.031-.281 0-.719.094-1.094.438-.375.344-1.438 1.406-1.438 3.438s1.469 3.969 1.688 4.25c.219.281 2.875 4.406 7.031 5.969.984.344 1.75.547 2.344.719.984.313 1.875.25 2.594.156.781-.094 2.406-.969 2.75-1.906.344-.938.344-1.75.25-1.906-.094-.156-.344-.25-.75-.438z'/></svg>
+                </a>` : ''}
+                ${associate.x ? `<a href="${associate.x}" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: #000000; color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); transition: all 0.3s ease;" title="X (Twitter)">
+                  <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 1200 1227' fill='currentColor'><path d='M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z'/></svg>
+                </a>` : ''}
+              </div>
+            </div>
+          `).join('');
+        }
+      })
+      .catch(error => {
+        console.log('Associates data not found, using default team display');
+        // Fallback to profile-system.js if associates.json is not available
+      });
+  </script>
+</body>
+</html>

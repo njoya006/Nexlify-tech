@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Nexlify Tech</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background-color: #06142E;
+      color: #fff;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid #1BA098;
+      box-shadow: 0 4px 15px rgba(27, 160, 152, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(27, 160, 152, 0.5);
+    }
+    
+    .brand-text h1 {
+      margin: 0;
+      font-size: 1.8em;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1BA098, #00E5FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .brand-text p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #B0BEC5;
+      font-weight: 300;
+    }
+    
+    nav {
+      flex-shrink: 0;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin: 5px 15px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li a:hover {
+      background-color: #1BA098;
+    }
+    .active {
+      background-color: #1BA098;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #06142E;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2.2em;
+    }
+    h3 {
+      color: #06142E;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .project-card {
+      background-color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .project-header {
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    .project-content {
+      padding: 25px;
+    }
+    .project-icon {
+      font-size: 3em;
+      margin-bottom: 15px;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .status-development {
+      background-color: #ff9800;
+      color: white;
+    }
+    .status-beta {
+      background-color: #2196f3;
+      color: white;
+    }
+    .status-planning {
+      background-color: #9c27b0;
+      color: white;
+    }
+    .status-live {
+      background-color: #4caf50;
+      color: white;
+    }
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 15px 0;
+    }
+    .tech-tag {
+      background-color: #e8f4f8;
+      color: #1BA098;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+    .project-features {
+      list-style: none;
+      margin: 15px 0;
+    }
+    .project-features li {
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .project-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #1BA098;
+      font-weight: bold;
+    }
+    .coming-soon-card {
+      opacity: 0.8;
+      position: relative;
+    }
+    .coming-soon-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #06142E;
+    }
+    footer {
+      background-color: #06142E;
+      color: #fff;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #1BA098;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #158f87;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      border: 2px solid #1BA098;
+      color: #1BA098;
+    }
+    .btn-secondary:hover {
+      background-color: #1BA098;
+      color: white;
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+      
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .logo-section {
+        justify-content: center;
+      }
+      
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .brand-text h1 {
+        font-size: 1.5em;
+      }
+      
+      .brand-text p {
+        font-size: 0.8em;
+      }
+      
+      nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      nav ul li {
+        margin: 5px;
+      }
+      
+      nav ul li a {
+        padding: 8px 12px;
+        font-size: 0.9em;
+      }
+      section {
+        padding: 30px 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.8em;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="nexlify-logo.jpg" alt="Nexlify Tech Logo" class="logo">
+        <div class="brand-text">
+          <h1>Nexlify Tech</h1>
+          <p>Building Smart Solutions for the Digital Age</p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <h1>Our Projects</h1>
+    <p style="text-align: center; font-size: 1.2em; margin-bottom: 40px;">Innovative Solutions We're Building for the Future</p>
+  </section>
+
+  <!-- Current Projects -->
+  <section>
+    <h2>Current Projects</h2>
+    <div class="projects-grid">
+      <!-- Nexlify Shop -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🛍️</div>
+          <h3>Nexlify Shop</h3>
+          <div class="status-badge status-development">In Development</div>
+        </div>
+        <div class="project-content">
+          <p><strong>Revolutionary E-commerce Platform for Africa</strong></p>
+          <p>A comprehensive shopping application that will revolutionize e-commerce across Africa by connecting buyers and sellers with seamless transactions, smart recommendations, and verified sellers.</p>
+          
+          <h4 style="margin-top: 20px; color: #06142E;">Key Features:</h4>
+          <ul class="project-features">
+            <li>Secure payment gateway integration</li>
+            <li>AI-powered product recommendations</li>
+            <li>Verified seller authentication system</li>
+            <li>Multi-language support</li>
+            <li>Mobile-first responsive design</li>
+            <li>Real-time order tracking</li>
+            <li>Social commerce features</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; color: #06142E;">Technology Stack:</h4>
+          <div class="tech-stack">
+            <span class="tech-tag">Django</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Redis</span>
+            <span class="tech-tag">Docker</span>
+          </div>
+
+          <p style="margin-top: 15px;"><strong>Expected Launch:</strong> Q3 2025</p>
+          <a href="contact.html" class="btn">Get Updates</a>
+        </div>
+      </div>
+
+      <!-- ChopSmo Meal Planner -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🍽️</div>
+          <h3>ChopSmo Meal Planner</h3>
+          <div class="status-badge status-beta">Beta Testing</div>
+        </div>
+        <div class="project-content">
+          <p><strong>Smart Meal Planning & Nutrition Tracker</strong></p>
+          <p>An intelligent meal planning application that helps users organize their meals, track nutrition, discover new recipes, and maintain healthy eating habits.</p>
+          
+          <h4 style="margin-top: 20px; color: #06142E;">Key Features:</h4>
+          <ul class="project-features">
+            <li>Weekly meal planning calendar</li>
+            <li>Nutritional analysis and tracking</li>
+            <li>Recipe discovery and storage</li>
+            <li>Grocery list generation</li>
+            <li>Dietary restriction support</li>
+            <li>Progress tracking and analytics</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; color: #06142E;">Technology Stack:</h4>
+          <div class="tech-stack">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">AWS</span>
+          </div>
+
+          <p style="margin-top: 15px;"><strong>Status:</strong> Currently in beta testing phase</p>
+          <a href="contact.html" class="btn">Join Beta</a>
+        </div>
+      </div>
+
+      <!-- Nexlify Pay -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">💳</div>
+          <h3>Nexlify Pay</h3>
+          <div class="status-badge status-planning">Planning Phase</div>
+        </div>
+        <div class="project-content">
+          <p><strong>Secure Payment Gateway Solution</strong></p>
+          <p>A comprehensive payment processing system designed specifically for African markets, supporting multiple payment methods and currencies.</p>
+          
+          <h4 style="margin-top: 20px; color: #06142E;">Planned Features:</h4>
+          <ul class="project-features">
+            <li>Multi-currency support</li>
+            <li>Mobile money integration</li>
+            <li>Cryptocurrency payments</li>
+            <li>Fraud detection system</li>
+            <li>Merchant dashboard</li>
+            <li>API for third-party integration</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; color: #06142E;">Technology Stack:</h4>
+          <div class="tech-stack">
+            <span class="tech-tag">Django</span>
+            <span class="tech-tag">Blockchain</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Kubernetes</span>
+          </div>
+
+          <p style="margin-top: 15px;"><strong>Expected Start:</strong> Q4 2025</p>
+          <a href="contact.html" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Future Projects -->
+  <section>
+    <h2>Future Projects</h2>
+    <div class="projects-grid">
+      <!-- AI Assistant -->
+      <div class="project-card coming-soon-card">
+        <div class="project-header">
+          <div class="project-icon">🤖</div>
+          <h3>Nexlify AI Assistant</h3>
+          <div class="status-badge status-planning">Coming Soon</div>
+        </div>
+        <div class="project-content">
+          <p><strong>Intelligent Business Assistant</strong></p>
+          <p>An AI-powered assistant to help businesses automate customer service, manage inventory, and provide intelligent insights.</p>
+          
+          <h4 style="margin-top: 20px; color: #06142E;">Planned Features:</h4>
+          <ul class="project-features">
+            <li>Natural language processing</li>
+            <li>Customer service automation</li>
+            <li>Business analytics</li>
+            <li>Multi-platform integration</li>
+          </ul>
+        </div>
+        <div class="coming-soon-overlay">Coming Soon</div>
+      </div>
+
+      <!-- Logistics Platform -->
+      <div class="project-card coming-soon-card">
+        <div class="project-header">
+          <div class="project-icon">🚚</div>
+          <h3>Nexlify Logistics</h3>
+          <div class="status-badge status-planning">Coming Soon</div>
+        </div>
+        <div class="project-content">
+          <p><strong>Smart Delivery & Logistics Platform</strong></p>
+          <p>A comprehensive logistics solution connecting businesses with delivery partners across Africa for efficient last-mile delivery.</p>
+          
+          <h4 style="margin-top: 20px; color: #06142E;">Planned Features:</h4>
+          <ul class="project-features">
+            <li>Real-time tracking</li>
+            <li>Route optimization</li>
+            <li>Delivery partner network</li>
+            <li>Inventory management</li>
+          </ul>
+        </div>
+        <div class="coming-soon-overlay">Coming Soon</div>
+      </div>
+
+      <!-- Education Platform -->
+      <div class="project-card coming-soon-card">
+        <div class="project-header">
+          <div class="project-icon">📚</div>
+          <h3>Nexlify Learn</h3>
+          <div class="status-badge status-planning">Coming Soon</div>
+        </div>
+        <div class="project-content">
+          <p><strong>Digital Learning Platform</strong></p>
+          <p>An educational technology platform designed to make quality education accessible across Africa through innovative digital tools.</p>
+          
+          <h4 style="margin-top: 20px; color: #06142E;">Planned Features:</h4>
+          <ul class="project-features">
+            <li>Interactive course content</li>
+            <li>Progress tracking</li>
+            <li>Virtual classrooms</li>
+            <li>Certification system</li>
+          </ul>
+        </div>
+        <div class="coming-soon-overlay">Coming Soon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Highlights -->
+  <section style="background: linear-gradient(135deg, #1BA098, #06142E); color: white; padding: 50px 20px; margin: 40px 0; border-radius: 15px;">
+    <h2>Our Development Philosophy</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
+      <div style="text-align: center;">
+        <h3 style="color: white;">🎯 User-Centered</h3>
+        <p>Every project starts with understanding user needs and designing solutions that provide real value.</p>
+      </div>
+      <div style="text-align: center;">
+        <h3 style="color: white;">🔒 Security First</h3>
+        <p>We implement robust security measures from the ground up to protect user data and ensure trust.</p>
+      </div>
+      <div style="text-align: center;">
+        <h3 style="color: white;">🚀 Scalable Solutions</h3>
+        <p>Our applications are built to grow with your business, handling increased load and new features seamlessly.</p>
+      </div>
+      <div style="text-align: center;">
+        <h3 style="color: white;">🌍 Africa-Focused</h3>
+        <p>We understand local markets and build solutions tailored to African business needs and user preferences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section style="text-align: center; padding: 50px 20px;">
+    <h2>Have a Project in Mind?</h2>
+    <p style="font-size: 1.1em; margin-bottom: 30px;">Let's collaborate to bring your vision to life with cutting-edge technology and innovative solutions.</p>
+    <a href="contact.html" class="btn" style="margin-right: 15px;">Start Your Project</a>
+    <a href="services.html" class="btn btn-secondary">View Our Services</a>
+  </section>
+
+  <footer>
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; padding: 20px;">
+      <div>
+        <h3 style="margin-bottom: 15px;">Nexlify Tech</h3>
+        <p>Building Smart Solutions for the Digital Age</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Quick Links</h4>
+        <p><a href="about.html" style="color: #1BA098; text-decoration: none;">About Us</a></p>
+        <p><a href="services.html" style="color: #1BA098; text-decoration: none;">Services</a></p>
+        <p><a href="projects.html" style="color: #1BA098; text-decoration: none;">Projects</a></p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Contact</h4>
+        <p>nexlifytech06@gmail.com</p>
+        <p>+237 683821011</p>
+      </div>
+    </div>
+    <div style="text-align: center; border-top: 1px solid #1BA098; padding-top: 20px; margin-top: 20px;">
+      <p>&copy; 2025 Nexlify Tech. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

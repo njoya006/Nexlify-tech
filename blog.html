@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nexlify Tech Blog - Latest insights on web development, e-commerce solutions, and technology trends in Africa.">
+  <meta name="keywords" content="tech blog, web development, e-commerce, African technology, Django tutorials, React guides">
+  <meta name="author" content="Nexlify Tech">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexlifytech.com/blog.html">
+  <meta property="og:title" content="Nexlify Tech Blog - Tech Insights & Tutorials">
+  <meta property="og:description" content="Latest insights on web development, e-commerce solutions, and technology trends in Africa.">
+  
+  <title>Blog - Nexlify Tech</title>
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Blog-specific styles */
+    .blog-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    
+    .blog-post {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      transition: transform 0.3s ease;
+    }
+    
+    .blog-post:hover {
+      transform: translateY(-5px);
+    }
+    
+    .blog-post-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3em;
+      color: white;
+    }
+    
+    .blog-post-content {
+      padding: 25px;
+    }
+    
+    .blog-post-meta {
+      display: flex;
+      gap: 15px;
+      color: #666;
+      font-size: 0.9em;
+      margin-bottom: 15px;
+    }
+    
+    .blog-post-category {
+      background: #e8f4f8;
+      color: #1BA098;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+    
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+    
+    .sidebar-widget {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .tag {
+      background: #f8f9fa;
+      color: #666;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 0.8em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .tag:hover {
+      background: #1BA098;
+      color: white;
+    }
+    
+    @media (max-width: 768px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="nexlify-logo.jpg" alt="Nexlify Tech Logo" class="logo">
+        <div class="brand-text">
+          <h1>Nexlify Tech</h1>
+          <p>Building Smart Solutions for the Digital Age</p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="blog-container">
+    <section>
+      <h1>Tech Insights & Tutorials</h1>
+      <p style="text-align: center; font-size: 1.2em; margin-bottom: 40px;">Stay updated with the latest in web development, e-commerce, and African tech trends</p>
+    </section>
+
+    <div class="blog-grid">
+      <!-- Main Content -->
+      <main>
+        <!-- Featured Post -->
+        <article class="blog-post">
+          <div class="blog-post-image">📱</div>
+          <div class="blog-post-content">
+            <div class="blog-post-meta">
+              <span class="blog-post-category">Mobile Development</span>
+              <span>July 20, 2025</span>
+              <span>5 min read</span>
+            </div>
+            <h2 style="margin-bottom: 15px;"><a href="#" style="color: #06142E; text-decoration: none;">Building Mobile-First E-commerce Apps for African Markets</a></h2>
+            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Discover the key considerations when developing e-commerce applications specifically designed for African mobile users, including offline functionality, data optimization, and payment integration.</p>
+            <a href="#" style="color: #1BA098; font-weight: bold; text-decoration: none;">Read More →</a>
+          </div>
+        </article>
+
+        <!-- Recent Posts -->
+        <article class="blog-post">
+          <div class="blog-post-image">🔒</div>
+          <div class="blog-post-content">
+            <div class="blog-post-meta">
+              <span class="blog-post-category">Security</span>
+              <span>July 15, 2025</span>
+              <span>7 min read</span>
+            </div>
+            <h3 style="margin-bottom: 15px;"><a href="#" style="color: #06142E; text-decoration: none;">Django Security Best Practices for Production Apps</a></h3>
+            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">A comprehensive guide to securing your Django applications in production, covering authentication, authorization, data protection, and common security vulnerabilities.</p>
+            <a href="#" style="color: #1BA098; font-weight: bold; text-decoration: none;">Read More →</a>
+          </div>
+        </article>
+
+        <article class="blog-post">
+          <div class="blog-post-image">⚡</div>
+          <div class="blog-post-content">
+            <div class="blog-post-meta">
+              <span class="blog-post-category">Performance</span>
+              <span>July 10, 2025</span>
+              <span>6 min read</span>
+            </div>
+            <h3 style="margin-bottom: 15px;"><a href="#" style="color: #06142E; text-decoration: none;">Optimizing React Apps for Low-Bandwidth Networks</a></h3>
+            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">Learn how to optimize React applications for users with limited internet connectivity, focusing on code splitting, lazy loading, and progressive enhancement.</p>
+            <a href="#" style="color: #1BA098; font-weight: bold; text-decoration: none;">Read More →</a>
+          </div>
+        </article>
+
+        <article class="blog-post">
+          <div class="blog-post-image">💳</div>
+          <div class="blog-post-content">
+            <div class="blog-post-meta">
+              <span class="blog-post-category">Payments</span>
+              <span>July 5, 2025</span>
+              <span>8 min read</span>
+            </div>
+            <h3 style="margin-bottom: 15px;"><a href="#" style="color: #06142E; text-decoration: none;">Integrating Mobile Money APIs in African E-commerce</a></h3>
+            <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">A step-by-step guide to integrating popular mobile money services like MTN Mobile Money, Orange Money, and others into your e-commerce platform.</p>
+            <a href="#" style="color: #1BA098; font-weight: bold; text-decoration: none;">Read More →</a>
+          </div>
+        </article>
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Newsletter Signup -->
+        <div class="sidebar-widget">
+          <h3 style="margin-bottom: 20px; color: #06142E;">Stay Updated</h3>
+          <p style="color: #666; margin-bottom: 20px;">Get the latest tech insights and tutorials delivered to your inbox.</p>
+          <form style="display: flex; flex-direction: column; gap: 10px;">
+            <input type="email" placeholder="Your email address" style="padding: 12px; border: 2px solid #e1e1e1; border-radius: 8px; font-size: 14px;">
+            <button type="submit" class="btn" style="margin: 0;">Subscribe</button>
+          </form>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-widget">
+          <h3 style="margin-bottom: 20px; color: #06142E;">Categories</h3>
+          <ul style="list-style: none;">
+            <li style="margin-bottom: 10px;"><a href="#" style="color: #666; text-decoration: none; display: flex; justify-content: space-between;"><span>Mobile Development</span> <span style="color: #1BA098;">(5)</span></a></li>
+            <li style="margin-bottom: 10px;"><a href="#" style="color: #666; text-decoration: none; display: flex; justify-content: space-between;"><span>Security</span> <span style="color: #1BA098;">(3)</span></a></li>
+            <li style="margin-bottom: 10px;"><a href="#" style="color: #666; text-decoration: none; display: flex; justify-content: space-between;"><span>Performance</span> <span style="color: #1BA098;">(4)</span></a></li>
+            <li style="margin-bottom: 10px;"><a href="#" style="color: #666; text-decoration: none; display: flex; justify-content: space-between;"><span>Payments</span> <span style="color: #1BA098;">(2)</span></a></li>
+            <li style="margin-bottom: 10px;"><a href="#" style="color: #666; text-decoration: none; display: flex; justify-content: space-between;"><span>UI/UX</span> <span style="color: #1BA098;">(6)</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Popular Tags -->
+        <div class="sidebar-widget">
+          <h3 style="margin-bottom: 20px; color: #06142E;">Popular Tags</h3>
+          <div class="tag-cloud">
+            <a href="#" class="tag">Django</a>
+            <a href="#" class="tag">React</a>
+            <a href="#" class="tag">Mobile Money</a>
+            <a href="#" class="tag">E-commerce</a>
+            <a href="#" class="tag">Security</a>
+            <a href="#" class="tag">Performance</a>
+            <a href="#" class="tag">API</a>
+            <a href="#" class="tag">PostgreSQL</a>
+            <a href="#" class="tag">African Tech</a>
+            <a href="#" class="tag">Payments</a>
+          </div>
+        </div>
+
+        <!-- Recent Projects -->
+        <div class="sidebar-widget">
+          <h3 style="margin-bottom: 20px; color: #06142E;">Our Projects</h3>
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            <a href="projects.html#nexlify-shop" style="display: flex; align-items: center; gap: 15px; text-decoration: none; color: #666;">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #1BA098, #06142E); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em;">🛍️</div>
+              <div>
+                <p style="font-weight: bold; color: #06142E;">Nexlify Shop</p>
+                <p style="font-size: 0.8em;">E-commerce Platform</p>
+              </div>
+            </a>
+            <a href="projects.html#chopsmo" style="display: flex; align-items: center; gap: 15px; text-decoration: none; color: #666;">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #1BA098, #06142E); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em;">🍽️</div>
+              <div>
+                <p style="font-weight: bold; color: #06142E;">ChopSmo</p>
+                <p style="font-size: 0.8em;">Meal Planner App</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <section style="background: linear-gradient(135deg, #1BA098, #06142E); color: white; text-align: center; padding: 50px 20px; margin: 40px 0;">
+    <h2>Ready to Build Your Project?</h2>
+    <p style="font-size: 1.1em; margin-bottom: 30px;">Let's discuss how we can help bring your ideas to life with cutting-edge technology.</p>
+    <a href="contact.html" class="btn" style="background: white; color: #06142E; font-weight: bold;">Start Your Project</a>
+  </section>
+
+  <footer style="background-color: #06142E; color: #fff; padding: 40px 20px;">
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+      <div>
+        <h3 style="margin-bottom: 15px;">Nexlify Tech</h3>
+        <p>Building Smart Solutions for the Digital Age</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Quick Links</h4>
+        <p><a href="about.html" style="color: #1BA098; text-decoration: none;">About Us</a></p>
+        <p><a href="services.html" style="color: #1BA098; text-decoration: none;">Services</a></p>
+        <p><a href="projects.html" style="color: #1BA098; text-decoration: none;">Projects</a></p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 15px;">Contact</h4>
+        <p>nexlifytech06@gmail.com</p>
+        <p>+237 683821011</p>
+      </div>
+    </div>
+    <div style="text-align: center; border-top: 1px solid #1BA098; padding-top: 20px; margin-top: 20px;">
+      <p>&copy; 2025 Nexlify Tech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

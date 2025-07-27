@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Nexlify Tech</title>
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+    
+    .admin-container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+    }
+    
+    .sidebar {
+      background: linear-gradient(135deg, #06142E, #1BA098);
+      color: white;
+      padding: 30px 20px;
+    }
+    
+    .sidebar-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .sidebar-nav {
+      list-style: none;
+    }
+    
+    .sidebar-nav li {
+      margin-bottom: 10px;
+    }
+    
+    .sidebar-nav a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 15px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s ease;
+    }
+    
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .main-content {
+      padding: 30px;
+      overflow-y: auto;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .user-avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    
+    .dashboard-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .card-icon {
+      font-size: 2.5em;
+      color: #1BA098;
+    }
+    
+    .card-value {
+      font-size: 2em;
+      font-weight: bold;
+      color: #06142E;
+    }
+    
+    .card-label {
+      color: #666;
+      font-size: 0.9em;
+    }
+    
+    .content-section {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    
+    .section-header {
+      background: #f8f9fa;
+      padding: 20px 30px;
+      border-bottom: 1px solid #e1e8ed;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .section-content {
+      padding: 30px;
+    }
+    
+    .associates-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .associates-table th,
+    .associates-table td {
+      text-align: left;
+      padding: 15px;
+      border-bottom: 1px solid #e1e8ed;
+    }
+    
+    .associates-table th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #06142E;
+    }
+    
+    .associate-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .associate-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #1BA098, #06142E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .status-badge {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+    
+    .status-active {
+      background: #d4edda;
+      color: #155724;
+    }
+    
+    .status-inactive {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    
+    .status-pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+    
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9em;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: #1BA098;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #158f87;
+    }
+    
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+    
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+    }
+    
+    .btn-success {
+      background: #28a745;
+      color: white;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      background: white;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #06142E;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e1e1e1;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #1BA098;
+    }
+    
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+    
+    @media (max-width: 768px) {
+      .admin-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        height: 100vh;
+        z-index: 999;
+        transition: left 0.3s ease;
+      }
+      
+      .sidebar.open {
+        left: 0;
+      }
+      
+      .main-content {
+        padding: 20px;
+      }
+      
+      .dashboard-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <img src="nexlify-logo.jpg" alt="Nexlify Tech Logo" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover; border: 2px solid #1BA098;">
+          <div>
+            <h2 style="margin: 0; font-size: 1.4em;">Nexlify Admin</h2>
+            <p style="margin: 0; font-size: 0.8em; color: #B0BEC5;">CEO Dashboard</p>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <ul class="sidebar-nav">
+          <li><a href="#dashboard" class="nav-link active">📊 Dashboard</a></li>
+          <li><a href="#associates" class="nav-link">👥 Associates</a></li>
+          <li><a href="#projects" class="nav-link">🚀 Projects</a></li>
+          <li><a href="#analytics" class="nav-link">📈 Analytics</a></li>
+          <li><a href="#settings" class="nav-link">⚙️ Settings</a></li>
+          <li><a href="index.html">🌐 View Website</a></li>
+          <li><a href="#logout" class="nav-link">🚪 Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <div class="header">
+        <div>
+          <h1>Welcome back, Njoya Perfect</h1>
+          <p>Here's what's happening with your business today</p>
+        </div>
+        <div class="user-info">
+          <div class="user-avatar">NP</div>
+          <div>
+            <p style="font-weight: 600;">Njoya Perfect</p>
+            <p style="color: #666; font-size: 0.9em;">CEO & Founder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div id="dashboard-content">
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-value" id="total-associates">2</div>
+                <div class="card-label">Total Associates</div>
+              </div>
+              <div class="card-icon">👥</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-value" id="active-projects">3</div>
+                <div class="card-label">Active Projects</div>
+              </div>
+              <div class="card-icon">🚀</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-value" id="monthly-visitors">1,247</div>
+                <div class="card-label">Monthly Visitors</div>
+              </div>
+              <div class="card-icon">📈</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-value" id="client-inquiries">12</div>
+                <div class="card-label">New Inquiries</div>
+              </div>
+              <div class="card-icon">📧</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Associates Management -->
+        <div class="content-section">
+          <div class="section-header">
+            <h2>Associates Management</h2>
+            <button class="btn btn-primary" onclick="openAddAssociateModal()">+ Add Associate</button>
+          </div>
+          <div class="section-content">
+            <table class="associates-table" id="associates-table">
+              <thead>
+                <tr>
+                  <th>Associate</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Joined</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="associates-tbody">
+                <!-- Associates will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="content-section">
+          <div class="section-header">
+            <h2>Recent Activity</h2>
+          </div>
+          <div class="section-content">
+            <div id="activity-feed">
+              <div style="padding: 15px; border-left: 3px solid #1BA098; margin-bottom: 15px; background: #f8f9fa;">
+                <p><strong>New associate added:</strong> John Doe joined as Frontend Developer</p>
+                <small style="color: #666;">2 hours ago</small>
+              </div>
+              <div style="padding: 15px; border-left: 3px solid #28a745; margin-bottom: 15px; background: #f8f9fa;">
+                <p><strong>Project update:</strong> Nexlify Shop moved to testing phase</p>
+                <small style="color: #666;">1 day ago</small>
+              </div>
+              <div style="padding: 15px; border-left: 3px solid #ffc107; margin-bottom: 15px; background: #f8f9fa;">
+                <p><strong>Website update:</strong> New blog post published</p>
+                <small style="color: #666;">3 days ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Associate Modal -->
+  <div id="addAssociateModal" class="modal">
+    <div class="modal-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+        <h2>Add New Associate</h2>
+        <button onclick="closeModal('addAssociateModal')" style="background: none; border: none; font-size: 1.5em; cursor: pointer;">&times;</button>
+      </div>
+      <form id="addAssociateForm">
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="adminProfilePhoto">Profile Photo</label>
+          <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+            <div style="flex-shrink: 0;">
+              <div id="adminPhotoPreview" style="width: 80px; height: 80px; border: 2px dashed #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #f8f9fa; color: #666;">
+                <span style="font-size: 1.5em;">📷</span>
+              </div>
+            </div>
+            <div style="flex: 1;">
+              <input type="file" id="adminProfilePhoto" name="adminProfilePhoto" accept="image/*" style="display: none;">
+              <button type="button" class="btn btn-secondary" onclick="document.getElementById('adminProfilePhoto').click()">
+                📸 Upload Photo
+              </button>
+              <button type="button" class="btn btn-secondary" id="adminRemovePhotoBtn" style="display: none;" onclick="removeAdminPhoto()">
+                🗑️ Remove
+              </button>
+              <p style="font-size: 0.8em; color: #666; margin: 5px 0;">Recommended: Square image, max 2MB</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="role">Role *</label>
+          <select id="role" name="role" required>
+            <option value="">Select Role</option>
+            <option value="Frontend Developer">Frontend Developer</option>
+            <option value="Backend Developer">Backend Developer</option>
+            <option value="Full Stack Developer">Full Stack Developer</option>
+            <option value="UI/UX Designer">UI/UX Designer</option>
+            <option value="Mobile Developer">Mobile Developer</option>
+            <option value="DevOps Engineer">DevOps Engineer</option>
+            <option value="Project Manager">Project Manager</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea id="bio" name="bio" placeholder="Brief description about the associate..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="skills">Primary Skills (comma-separated)</label>
+          <input type="text" id="skills" name="skills" placeholder="React, JavaScript, CSS, etc.">
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('addAssociateModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Associate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Sample associates data (will be replaced with database)
+    let associates = [
+      {
+        id: 1,
+        fullName: "Njoya Perfect",
+        email: "njoya@nexlifytech.com",
+        role: "Co-founder & Backend Developer",
+        status: "active",
+        joinDate: "2025-01-01",
+        phone: "+237 683821011",
+        bio: "Expert in Django, PostgreSQL, Security, and API Optimization. Passionate about building secure, scalable backend systems.",
+        skills: ["Django", "Python", "PostgreSQL", "API Development", "Security"],
+        isFounder: true
+      },
+      {
+        id: 2,
+        fullName: "Sarah Johnson",
+        email: "sarah@nexlifytech.com",
+        role: "Frontend Developer",
+        status: "active",
+        joinDate: "2025-02-15",
+        phone: "+237 683821011",
+        bio: "Specializes in creating beautiful, intuitive user interfaces with modern web technologies.",
+        skills: ["React", "JavaScript", "CSS", "UI/UX", "TypeScript"],
+        isFounder: true
+      }
+    ];
+
+    // Load associates on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadAssociates();
+      updateDashboardStats();
+    });
+
+    // Navigation handling
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          
+          // Update active nav
+          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Show relevant content
+          const section = this.getAttribute('href').substring(1);
+          showSection(section);
+        }
+      });
+    });
+
+    function showSection(section) {
+      // Hide all content first
+      const content = document.getElementById('dashboard-content');
+      
+      switch(section) {
+        case 'dashboard':
+          // Show dashboard content
+          break;
+        case 'associates':
+          // Focus on associates section
+          document.querySelector('.content-section').scrollIntoView({behavior: 'smooth'});
+          break;
+        default:
+          console.log('Section not implemented:', section);
+      }
+    }
+
+    function loadAssociates() {
+      const tbody = document.getElementById('associates-tbody');
+      tbody.innerHTML = '';
+      
+      associates.forEach(associate => {
+        const row = createAssociateRow(associate);
+        tbody.appendChild(row);
+      });
+    }
+
+    function createAssociateRow(associate) {
+      const row = document.createElement('tr');
+      
+      const statusClass = `status-${associate.status}`;
+      const statusText = associate.status.charAt(0).toUpperCase() + associate.status.slice(1);
+      const initials = associate.fullName.split(' ').map(n => n[0]).join('');
+      
+      row.innerHTML = `
+        <td>
+          <div class="associate-info">
+            <div class="associate-avatar">${initials}</div>
+            <div>
+              <p style="font-weight: 600;">${associate.fullName}</p>
+              <p style="color: #666; font-size: 0.9em;">${associate.email}</p>
+            </div>
+          </div>
+        </td>
+        <td>${associate.role}</td>
+        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+        <td>${new Date(associate.joinDate).toLocaleDateString()}</td>
+        <td>
+          <button class="btn btn-primary" onclick="editAssociate(${associate.id})" style="margin-right: 5px;">Edit</button>
+          <button class="btn btn-secondary" onclick="viewAssociate(${associate.id})" style="margin-right: 5px;">View</button>
+          ${!associate.isFounder ? '<button class="btn btn-danger" onclick="removeAssociate(' + associate.id + ')">Remove</button>' : ''}
+        </td>
+      `;
+      
+      return row;
+    }
+
+    function updateDashboardStats() {
+      document.getElementById('total-associates').textContent = associates.length;
+    }
+
+    function openAddAssociateModal() {
+      document.getElementById('addAssociateModal').style.display = 'block';
+      setupAdminPhotoUpload();
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+      // Reset photo upload if closing add modal
+      if (modalId === 'addAssociateModal') {
+        resetAdminPhoto();
+      }
+    }
+
+    // Admin Photo Upload Functions
+    let adminSelectedPhoto = null;
+
+    function setupAdminPhotoUpload() {
+      const photoInput = document.getElementById('adminProfilePhoto');
+      const photoPreview = document.getElementById('adminPhotoPreview');
+      const removeBtn = document.getElementById('adminRemovePhotoBtn');
+
+      photoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          // Validate file size (max 2MB)
+          if (file.size > 2 * 1024 * 1024) {
+            alert('File size must be less than 2MB');
+            return;
+          }
+
+          // Validate file type
+          if (!file.type.startsWith('image/')) {
+            alert('Please select a valid image file');
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            adminSelectedPhoto = e.target.result;
+            displayAdminPhoto();
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    function displayAdminPhoto() {
+      const photoPreview = document.getElementById('adminPhotoPreview');
+      const removeBtn = document.getElementById('adminRemovePhotoBtn');
+
+      if (adminSelectedPhoto) {
+        photoPreview.innerHTML = `<img src="${adminSelectedPhoto}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+        photoPreview.style.border = '2px solid #1BA098';
+        removeBtn.style.display = 'inline-block';
+      } else {
+        photoPreview.innerHTML = '<span style="font-size: 1.5em;">📷</span>';
+        photoPreview.style.border = '2px dashed #ccc';
+        removeBtn.style.display = 'none';
+      }
+    }
+
+    function removeAdminPhoto() {
+      adminSelectedPhoto = null;
+      document.getElementById('adminProfilePhoto').value = '';
+      displayAdminPhoto();
+    }
+
+    function resetAdminPhoto() {
+      adminSelectedPhoto = null;
+      document.getElementById('adminProfilePhoto').value = '';
+      displayAdminPhoto();
+    }
+
+    // Handle add associate form
+    document.getElementById('addAssociateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const newAssociate = {
+        id: associates.length + 1,
+        fullName: formData.get('fullName'),
+        email: formData.get('email'),
+        role: formData.get('role'),
+        status: 'pending',
+        joinDate: new Date().toISOString().split('T')[0],
+        phone: formData.get('phone'),
+        bio: formData.get('bio'),
+        skills: formData.get('skills').split(',').map(s => s.trim()).filter(s => s),
+        profileImage: adminSelectedPhoto,
+        isFounder: false
+      };
+      
+      associates.push(newAssociate);
+      loadAssociates();
+      updateDashboardStats();
+      closeModal('addAssociateModal');
+      this.reset();
+      resetAdminPhoto();
+      
+      // Show success message
+      alert('Associate added successfully! They will receive an email with login credentials.');
+    });
+
+    function editAssociate(id) {
+      const associate = associates.find(a => a.id === id);
+      if (associate) {
+        // Open edit modal (to be implemented)
+        console.log('Edit associate:', associate);
+        alert('Edit functionality will open associate profile editor');
+      }
+    }
+
+    function viewAssociate(id) {
+      const associate = associates.find(a => a.id === id);
+      if (associate) {
+        // Open view modal (to be implemented)
+        console.log('View associate:', associate);
+        alert(`Viewing ${associate.fullName}'s profile`);
+      }
+    }
+
+    function removeAssociate(id) {
+      if (confirm('Are you sure you want to remove this associate?')) {
+        associates = associates.filter(a => a.id !== id);
+        loadAssociates();
+        updateDashboardStats();
+      }
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
