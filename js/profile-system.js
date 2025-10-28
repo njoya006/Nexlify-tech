@@ -63,9 +63,11 @@ class ProfileManager {
     displayTeamMembers() {
         // Display in about page team section
         this.displayInAboutPage();
-        
-        // Display in homepage team section
+
+        // Display in homepage team section(s)
+        // Support multiple possible container IDs used across templates
         this.displayInHomepage();
+        this.displayInElementId('team-members');
     }
 
     /**
@@ -86,7 +88,19 @@ class ProfileManager {
         const homeTeamContainer = document.getElementById('dynamic-team-members');
         if (homeTeamContainer) {
             homeTeamContainer.innerHTML = this.generateTeamHTML();
-            console.log('Team members displayed in homepage');
+            console.log('Team members displayed in homepage (dynamic-team-members)');
+        }
+    }
+
+    /**
+     * Generic method to display team html into an element by id
+     */
+    displayInElementId(id) {
+        if (!id) return;
+        const el = document.getElementById(id);
+        if (el) {
+            el.innerHTML = this.generateTeamHTML();
+            console.log(`Team members displayed in ${id}`);
         }
     }
 
@@ -105,18 +119,20 @@ class ProfileManager {
      * Create individual member card HTML
      */
     createMemberCard(associate) {
-        const photoSrc = associate.photo ? `./${associate.photo}` : './nexlify-logo.jpg';
+        // Use provided photo path directly (associates.json uses assets/*),
+        // and fall back to a known avatar in the assets folder.
+        const photoSrc = associate.photo ? `${associate.photo}` : 'assets/avatar.png';
         return `
             <div class="team-member-card">
                 <div class="member-photo-wrap">
-                    <img src="${photoSrc}" alt="${associate.name}" class="member-photo" onerror="this.src='./nexlify-logo.jpg'">
+                    <img src="${photoSrc}" alt="${associate.name}" class="member-photo" onerror="this.src='assets/avatar.png'">
                 </div>
 
                 <h3 class="member-name">${associate.name}</h3>
                 <p class="member-role">${associate.role}</p>
-                <p class="member-bio">${associate.bio}</p>
+                <p class="member-bio">${associate.bio || ''}</p>
 
-                <div class="social-links">
+                <div class="social-links" aria-label="social links">
                     ${this.generateSocialLinks(associate)}
                 </div>
             </div>
