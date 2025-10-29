@@ -152,6 +152,20 @@ nav.site-nav a:hover,nav.site-nav a:focus{background:rgba(255,255,255,0.06);outl
   .sub-menu{position:static;transform:none;opacity:1;visibility:visible;padding-left:6px;background:transparent;box-shadow:none}
 }
 
+/* Ensure the dropdown panel is scrollable on mobile devices while body scrolling is locked
+   (we set an internal scroll area and enable smooth touch scrolling) */
+@media (max-width:980px){
+  nav.site-nav{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Constrain the main list so it scrolls inside the panel and keep footer pinned */
+  nav.site-nav ul{
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+  }
+}
+
 /* Dropdown submenu styles (desktop) */
 .nav-item{position:relative}
 .sub-toggle{background:transparent;border:0;color:inherit;font-weight:700;padding:8px 10px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
