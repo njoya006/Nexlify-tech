@@ -68,8 +68,9 @@ class ProfileManager {
         // Support multiple possible container IDs used across templates
         this.displayInHomepage();
         this.displayInElementId('team-members');
-        // Attach bio toggles after rendering
-        this.attachBioToggles();
+        // After rendering into the DOM, attach inline bio toggles where needed
+        // (measures text and injects an inline 'See more' button at end of 6th line)
+        this.attachInlineBioToggles();
     }
 
     /**
@@ -124,27 +125,17 @@ class ProfileManager {
         // Use provided photo path directly (associates.json uses assets/*),
         // and fall back to a known avatar in the assets folder.
         const photoSrc = associate.photo ? `${associate.photo}` : 'assets/avatar.png';
-        const skillsHtml = Array.isArray(associate.skills) && associate.skills.length ? `<div class="member-skills">${associate.skills.map(s=>`<span class="skill-tag">${s}</span>`).join('')}</div>` : '';
-        const uni = associate.university ? `<div class="member-meta"><strong>University:</strong> ${associate.university}</div>` : '';
-        const yrs = (typeof associate.years_experience !== 'undefined') ? `<div class="member-meta"><strong>Experience:</strong> ${associate.years_experience} yrs</div>` : '';
-
         return `
             <div class="team-member-card">
                 <div class="member-photo-wrap">
-                    <img src="${photoSrc}" alt="${associate.name}" class="member-photo large" onerror="this.src='assets/avatar.png'">
+                    <img src="${photoSrc}" alt="${associate.name}" class="member-photo" onerror="this.src='assets/avatar.png'">
                 </div>
 
                 <h3 class="member-name">${associate.name}</h3>
-                <p class="member-role">${associate.role || ''}</p>
-
+                <p class="member-role">${associate.role}</p>
                 <div class="bio-wrap">
-                  <p class="member-bio clamp-6">${associate.bio || ''}</p>
-                  <button class="bio-toggle" aria-expanded="false">See more</button>
+                    <p class="member-bio">${associate.bio || ''}</p>
                 </div>
-
-                ${skillsHtml}
-                ${uni}
-                ${yrs}
 
                 <div class="social-links" aria-label="social links">
                     ${this.generateSocialLinks(associate)}
@@ -154,29 +145,156 @@ class ProfileManager {
     }
 
     /**
-     * Attach click handlers for bio 'See more' toggles
+     * Measure and inject an inline 'See more' toggle at the end of the 6th visible line.
+     * This function is deliberately conservative: it only changes DOM for paragraphs that
+     * need truncation and marks them to avoid double initialization.
      */
-    attachBioToggles(){
-        // delegate to existing DOM nodes — support multiple containers
-        const buttons = Array.from(document.querySelectorAll('.bio-toggle'));
-        buttons.forEach(btn => {
-            // avoid double-binding
-            if (btn.__bound) return; btn.__bound = true;
-            const wrap = btn.closest('.bio-wrap');
-            if (!wrap) return;
+    attachInlineBioToggles() {
+        const wraps = Array.from(document.querySelectorAll('.bio-wrap'));
+        wraps.forEach(wrap => {
             const para = wrap.querySelector('.member-bio');
-            btn.addEventListener('click', (e)=>{
-                const expanded = btn.getAttribute('aria-expanded') === 'true';
-                if (expanded){
-                    para.classList.add('clamp-6');
-                    para.classList.remove('expanded');
-                    btn.setAttribute('aria-expanded','false');
-                    btn.textContent = 'See more';
+            if (!para) return;
+            // avoid double initialization
+            if (para.__inlineInit) return; para.__inlineInit = true;
+
+            const fullText = para.textContent.trim();
+            const style = window.getComputedStyle(para);
+            let lineHeight = parseFloat(style.lineHeight);
+            if (!lineHeight || Number.isNaN(lineHeight)){
+                const fontSize = parseFloat(style.fontSize) || 16;
+                lineHeight = fontSize * 1.4;
+            }
+            const maxHeight = Math.ceil(lineHeight * 6);
+
+            // reset any clamp to measure full height
+            para.style.maxHeight = '';
+            para.style.whiteSpace = 'normal';
+
+            if (para.scrollHeight <= maxHeight){
+                // no truncation needed; nothing to do
+                return;
+            }
+
+            // Create a hidden measuring element that mirrors the paragraph's width and font
+            const testPara = document.createElement('p');
+            testPara.style.position = 'absolute'; testPara.style.visibility = 'hidden';
+            testPara.style.width = (para.clientWidth || para.offsetWidth) + 'px';
+            // Copy key typographic properties so height measurements match
+            testPara.style.font = style.font || `${style.fontSize} ${style.fontFamily}`;
+            testPara.style.lineHeight = style.lineHeight;
+            document.body.appendChild(testPara);
+
+            // Binary search for the largest character index that fits within 6 lines when
+            // followed by an inline '… See more' marker.
+            const marker = '… See more';
+            let low = 0, high = fullText.length, best = 0;
+            while (low <= high) {
+                const mid = Math.floor((low + high) / 2);
+                testPara.textContent = fullText.slice(0, mid).trim() + marker;
+                if (testPara.scrollHeight <= maxHeight) { best = mid; low = mid + 1; }
+                else { high = mid - 1; }
+            }
+
+            document.body.removeChild(testPara);
+
+            let truncated = fullText.slice(0, best).trim();
+            // Set truncated paragraph text and append an inline button
+            para.textContent = truncated + '… ';
+            const inlineBtn = document.createElement('button');
+            inlineBtn.type = 'button';
+            inlineBtn.className = 'bio-inline-toggle';
+            inlineBtn.setAttribute('aria-expanded','false');
+            inlineBtn.textContent = 'See more';
+            para.appendChild(inlineBtn);
+
+            // Constrain visible height to 6 lines for the collapsed state
+            para.style.maxHeight = maxHeight + 'px';
+            para.style.overflow = 'hidden';
+
+            // If the button caused wrapping to the next line (still overflowing),
+            // iteratively trim the truncated text until the button fits within the allowed height.
+            // This corrects for differences between measuring plain text and the actual button element width.
+            let trimAttempts = 0;
+            while (para.scrollHeight > maxHeight && trimAttempts < 300 && truncated.length > 0) {
+                // remove the last word (prefer word-based trimming to avoid mid-word chops)
+                truncated = truncated.replace(/\s*\S+$/, '').trim();
+                para.textContent = truncated + '… ';
+                para.appendChild(inlineBtn);
+                trimAttempts++;
+            }
+            // If after many attempts it still doesn't fit, fallback to block display so it's visible
+            if (para.scrollHeight > maxHeight) {
+                inlineBtn.style.display = 'block';
+                inlineBtn.style.marginTop = '6px';
+            }
+
+            // Smooth expand/collapse using measured heights and CSS transitions for fluid animation.
+            inlineBtn.addEventListener('click', () => {
+                const expanded = inlineBtn.getAttribute('aria-expanded') === 'true';
+                const ANIM_MS = 320;
+                // ensure overflow hidden for animation
+                para.style.overflow = 'hidden';
+
+                if (expanded) {
+                    // collapse: animate from current height to collapsed height
+                    inlineBtn.setAttribute('aria-expanded','false');
+                    inlineBtn.textContent = 'See more';
+
+                    const currH = para.getBoundingClientRect().height;
+                    // fix current height so content swap doesn't jump
+                    para.style.height = currH + 'px';
+
+                    // swap text to truncated content (this will change scrollHeight)
+                    para.textContent = truncated + '… ';
+                    para.appendChild(inlineBtn);
+
+                    // measure target collapsed height
+                    const targetH = para.scrollHeight;
+
+                    // trigger animation to collapsed height
+                    requestAnimationFrame(() => {
+                        para.style.transition = `height ${ANIM_MS}ms ease`;
+                        para.style.height = targetH + 'px';
+                    });
+
+                    const cleanup = () => {
+                        para.style.transition = '';
+                        para.style.height = '';
+                        para.style.maxHeight = maxHeight + 'px';
+                        para.removeEventListener('transitionend', cleanup);
+                    };
+                    para.addEventListener('transitionend', cleanup);
+
                 } else {
-                    para.classList.remove('clamp-6');
-                    para.classList.add('expanded');
-                    btn.setAttribute('aria-expanded','true');
-                    btn.textContent = 'See less';
+                    // expand: animate from current (collapsed) height to full height
+                    inlineBtn.setAttribute('aria-expanded','true');
+                    inlineBtn.textContent = 'See less';
+
+                    const currH = para.getBoundingClientRect().height;
+
+                    // set explicit height to current to prepare animation
+                    para.style.height = currH + 'px';
+
+                    // set full text content and append button so we can measure full height
+                    para.textContent = fullText + ' ';
+                    para.appendChild(inlineBtn);
+
+                    // measure full height
+                    const fullH = para.scrollHeight;
+
+                    // trigger animation to full height
+                    requestAnimationFrame(() => {
+                        para.style.transition = `height ${ANIM_MS}ms ease`;
+                        para.style.height = fullH + 'px';
+                    });
+
+                    const cleanup = () => {
+                        para.style.transition = '';
+                        para.style.height = '';
+                        para.style.maxHeight = 'none';
+                        para.removeEventListener('transitionend', cleanup);
+                    };
+                    para.addEventListener('transitionend', cleanup);
                 }
             });
         });

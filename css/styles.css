@@ -241,7 +241,15 @@ nav.site-nav a:hover,nav.site-nav a:focus{background:rgba(255,255,255,0.06);outl
 /* Bio clamp + toggle */
 .bio-wrap{position:relative;width:100%;padding-bottom:18px}
 .member-bio{color:var(--muted);text-align:left;margin:6px 0;line-height:1.4}
-.member-bio.clamp-6{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:6;max-height:calc(1.4em * 6);padding-bottom:12px}
+.member-bio.clamp-6{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  -webkit-line-clamp:6;
+  line-clamp:6;
+  max-height:calc(1.4em * 6);
+  padding-bottom:12px;
+}
 .member-bio.expanded{display:block;max-height:none}
 .bio-toggle{position:absolute;right:8px;bottom:4px;background:transparent;border:0;color:var(--primary);font-weight:700;cursor:pointer}
 
@@ -252,6 +260,11 @@ nav.site-nav a:hover,nav.site-nav a:focus{background:rgba(255,255,255,0.06);outl
 .member-name{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:6px}
 .member-role{color:var(--primary);font-weight:600;margin-bottom:10px}
 .member-bio{color:var(--muted);font-size:.95rem;line-height:1.5;margin-bottom:14px}
+
+/* Inline 'See more' button placed at end of truncated paragraph */
+.member-bio{transition: max-height .32s ease, padding .22s ease}
+.bio-inline-toggle{display:inline;background:transparent;border:0;color:var(--primary);font-weight:700;cursor:pointer;padding:0;margin:0;font-size:0.95rem;vertical-align:baseline}
+.bio-inline-toggle:focus{outline:3px solid rgba(15,118,110,0.12);outline-offset:2px;border-radius:4px}
 
 .social-links{display:flex;gap:10px;justify-content:center}
 .social-btn{width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;text-decoration:none}
@@ -371,6 +384,68 @@ section > .container{padding:0 24px;max-width:var(--container);margin:0 auto}
   .hero-copy h1{font-size:2.2rem}
 }
 
+/* Mobile polish: tighter, more professional mobile layout (phones) */
+@media (max-width:520px){
+  html,body{font-size:15px}
+
+  /* Hero adjustments */
+  .hero{padding:36px 0}
+  .hero-copy h1{font-size:clamp(1.4rem, 6vw, 2rem)}
+  .hero .lead{font-size:1rem;line-height:1.35}
+  .hero-art img{max-height:220px}
+
+  /* Header / nav tweaks */
+  nav.site-nav{top:66px;right:8px;width:min(92vw,360px);padding:12px;border-radius:12px}
+  .nav-toggle{width:40px;height:40px}
+  .nav-toggle .hamburger{width:18px;height:2px}
+
+  /* Nav content sizing */
+  nav.site-nav ul{padding:6px 0}
+  nav.site-nav a{padding:10px 8px;font-size:0.95rem}
+  .nav-link{padding:10px 8px}
+
+  /* CTA sizing (Start project / header CTA) */
+  .header-cta .btn, .nav-cta .btn, .btn-start-project{
+    padding:6px 10px;font-size:0.92rem;min-height:36px;border-radius:10px
+  }
+
+  /* Stronger mobile override for the primary start button to reduce visual bulk */
+  .header-cta .btn.btn-primary, .header-cta a.btn-primary {
+    padding:6px 8px !important;
+    font-size:0.9rem !important;
+    min-height:34px !important;
+    border-radius:10px !important;
+    box-shadow:0 6px 18px rgba(15,118,110,0.06) !important;
+  }
+
+  /* Team grid and member card sizing */
+  .team-grid{gap:14px;margin:20px 0}
+  .team-member-card{padding:14px;border-radius:12px;gap:10px}
+  .member-photo{width:96px;height:96px;border-radius:12px}
+  .member-photo.large{width:96px;height:96px}
+
+  .member-name{font-size:1rem}
+  .member-role{font-size:0.95rem}
+  .member-bio{font-size:0.92rem;line-height:1.45}
+  .member-bio.clamp-6{max-height:calc(1.45em * 6)}
+
+  /* Buttons and CTAs: keep touch targets but reduce visual bulk */
+  .btn{padding:8px 12px;font-size:0.95rem;min-height:40px}
+  .header-cta .btn{padding:8px 12px}
+
+  /* Inline see more smaller and aligned */
+  .bio-inline-toggle{font-size:0.92rem}
+
+  /* Reduce card hover transform on mobile to avoid layout jumps */
+  .team-member-card:hover{transform:none;box-shadow:0 10px 30px rgba(6,20,46,0.06)}
+
+  /* Keep social icons compact */
+  .social-btn{width:40px;height:40px}
+
+  /* Footer spacing */
+  footer.site-footer{padding:18px 0}
+}
+
 @media (max-width:520px){
   .project-card .project-thumb{max-height:96px;padding:8px}
 }
@@ -401,4 +476,16 @@ section > .container{padding:0 24px;max-width:var(--container);margin:0 auto}
 @media (max-width:520px){
   nav.site-nav{position:fixed;top:70px;right:16px;background:var(--surface);box-shadow:0 12px 40px rgba(6,20,46,0.12);border-radius:12px;padding:14px;display:block;transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .18s ease,transform .2s ease,visibility .18s ease}
   nav.site-nav.open{transform:translateY(0);opacity:1;visibility:visible}
+}
+
+/* Very specific override to ensure the header 'Start a project' primary button is compact on all pages */
+@media (max-width:520px){
+  header.site-header .header-inner .header-cta .btn.btn-primary,
+  header.site-header .header-inner .header-cta a.btn-primary{
+    padding:6px 8px !important;
+    font-size:0.9rem !important;
+    min-height:34px !important;
+    border-radius:10px !important;
+    box-shadow:0 6px 18px rgba(15,118,110,0.06) !important;
+  }
 }
