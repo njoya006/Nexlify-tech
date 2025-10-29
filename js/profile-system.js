@@ -125,17 +125,36 @@ class ProfileManager {
         // Use provided photo path directly (associates.json uses assets/*),
         // and fall back to a known avatar in the assets folder.
         const photoSrc = associate.photo ? `${associate.photo}` : 'assets/avatar.png';
+        // Prepare skills HTML (render as pill tags)
+        const skillsHTML = (associate.skills && Array.isArray(associate.skills) && associate.skills.length)
+            ? associate.skills.map(s => `<span class="skill-tag">${s}</span>`).join('')
+            : '';
+
+        // University and experience display with safe fallbacks
+        const university = associate.university ? associate.university : '';
+        const experience = (typeof associate.years_experience !== 'undefined' && associate.years_experience !== null)
+            ? `${associate.years_experience} yr${associate.years_experience === 1 ? '' : 's'}`
+            : '';
+
         return `
             <div class="team-member-card">
                 <div class="member-photo-wrap">
-                    <img src="${photoSrc}" alt="${associate.name}" class="member-photo" onerror="this.src='assets/avatar.png'">
+                    <img src="${photoSrc}" alt="${associate.name}" class="member-photo" data-person="${associate.name}" onerror="this.src='assets/avatar.png'">
                 </div>
 
                 <h3 class="member-name">${associate.name}</h3>
                 <p class="member-role">${associate.role}</p>
+
+                <div class="member-meta-row">
+                    ${university ? `<span class="member-university" title="University">${university}</span>` : ''}
+                    ${experience ? `<span class="member-experience" title="Years of experience">${experience}</span>` : ''}
+                </div>
+
                 <div class="bio-wrap">
                     <p class="member-bio">${associate.bio || ''}</p>
                 </div>
+
+                <div class="member-skills">${skillsHTML}</div>
 
                 <div class="social-links" aria-label="social links">
                     ${this.generateSocialLinks(associate)}

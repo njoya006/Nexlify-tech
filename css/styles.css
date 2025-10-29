@@ -261,6 +261,47 @@ nav.site-nav a:hover,nav.site-nav a:focus{background:rgba(255,255,255,0.06);outl
 .member-role{color:var(--primary);font-weight:600;margin-bottom:10px}
 .member-bio{color:var(--muted);font-size:.95rem;line-height:1.5;margin-bottom:14px}
 
+/* Meta row: university and experience badges */
+.member-meta-row{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:6px;margin-bottom:6px;flex-wrap:wrap}
+.member-university{color:var(--muted);font-weight:600;font-size:0.92rem;padding:6px 10px;border-radius:10px;background:linear-gradient(180deg,rgba(6,20,46,0.02),rgba(6,20,46,0.01));}
+.member-experience{background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#06142E;font-weight:800;padding:6px 10px;border-radius:999px;font-size:0.85rem}
+
+/* Slightly bigger skill tag styling for nicer visual rhythm */
+.member-skills .skill-tag{background:transparent;border:1px solid rgba(15,118,110,0.08);padding:6px 10px;border-radius:999px;color:var(--primary);font-weight:700;font-size:0.85rem}
+
+/* Target Pamela specifically on narrow screens to avoid compressed look */
+@media (max-width:520px){
+  .member-photo[data-person="Beri Pamela Mengnjoh"]{
+    /* Increased strongly per your request — make Pamela's portrait much larger on phones */
+    width:220px !important;
+    /* make the portrait significantly taller to give a less compressed look */
+    height:320px !important;
+    max-height:360px !important;
+    border-radius:14px !important;
+    object-fit:cover !important;
+    margin-bottom:8px;
+  }
+  /* fallback: enlarge other portrait-like photos on mobile for breathing room */
+  .member-photo[data-person]{
+    /* upscale for better legibility */
+    width:160px !important;
+    height:auto !important;
+    max-height:260px !important;
+  }
+
+  /* Additional robust selector: target Pamela by her image filename as a fallback
+     in case the name in associates.json changes. This ensures the homepage portrait
+     won't look squashed under the nav. */
+  img[src$="/Pamela.jpg"], img[src$="Pamela.jpg"]{
+    width:220px !important;
+    height:320px !important;
+    max-height:360px !important;
+    object-fit:cover !important;
+    border-radius:14px !important;
+    margin-bottom:8px !important;
+  }
+}
+
 /* Inline 'See more' button placed at end of truncated paragraph */
 .member-bio{transition: max-height .32s ease, padding .22s ease}
 .bio-inline-toggle{display:inline;background:transparent;border:0;color:var(--primary);font-weight:700;cursor:pointer;padding:0;margin:0;font-size:0.95rem;vertical-align:baseline}
