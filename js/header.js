@@ -68,25 +68,20 @@
       document.body.insertAdjacentHTML('afterbegin', headerHTML);
     }
 
-    // Ensure nav.js is loaded so the hamburger works on every page.
-    // If a nav script tag already exists (it may have run before we injected the header),
-    // remove and re-add it so the initialization code runs against the newly-inserted header.
-    (function ensureNavScript(){
+    // Initialize or load nav logic. Prefer calling the exposed initializer (faster and idempotent).
+    (function ensureNavInit(){
+      try{
+        if (window && typeof window.initSiteNav === 'function'){
+          // call the initializer directly — idempotent and avoids reloading scripts
+          window.initSiteNav();
+          return;
+        }
+      }catch(e){ /* ignore */ }
+
+      // Fallback: load nav.js so it runs normally when no initializer is present
       const selector = 'script[src="/js/nav.js"], script[src="js/nav.js"]';
       const existing = document.querySelector(selector);
-      if (existing){
-        try{
-          const src = existing.getAttribute('src');
-          existing.parentNode.removeChild(existing);
-          const s = document.createElement('script');
-          s.src = src;
-          s.defer = true;
-          document.body.appendChild(s);
-        }catch(e){
-          // fallback: do nothing
-          console.warn('could not reload nav.js', e);
-        }
-      } else {
+      if (!existing){
         const s = document.createElement('script');
         s.src = '/js/nav.js';
         s.defer = true;
