@@ -9,27 +9,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Improved font loading: preconnect & display swap already set in font link -->
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner container">
       <a class="brand" href="index.html" aria-label="Nexlify Tech home">
-        <img src="assets/logo.svg" alt="Nexlify Tech logo" class="logo">
+        <img src="assets/nexlify-logo.jpg" alt="Nexlify Tech logo" class="logo">
         <div class="brand-text"><strong>Nexlify Tech</strong><small>Building smart digital products</small></div>
       </a>
 
-      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
-        <span class="hamburger"></span>
-      </button>
+      <div class="header-actions" style="display:flex;align-items:center;gap:8px">
+        <div class="header-cta">
+          <a class="btn btn-primary" href="contact.html">Start a project</a>
+        </div>
+        <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+          <span class="hamburger"></span>
+        </button>
+      </div>
 
       <nav id="primary-nav" class="site-nav" aria-label="Main navigation">
+        <div class="nav-divider" aria-hidden="true"></div>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a class="nav-link" href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span class="nav-title">Home</span><span class="nav-desc">Overview</span></a></li>
+          <li><a class="nav-link" href="about.html"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span class="nav-title">About</span><span class="nav-desc">Who we are</span></a></li>
+
+          <li class="nav-item has-sub">
+            <button class="sub-toggle" aria-expanded="false" aria-controls="sub-projects">Projects <span class="chev" aria-hidden="true">▾</span></button>
+            <ul id="sub-projects" class="sub-menu" role="menu" aria-hidden="true">
+              <li role="none"><a role="menuitem" href="projects.html"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i><span class="nav-title">All projects</span><span class="nav-desc">Browse case studies</span></a></li>
+              <li role="none"><a role="menuitem" href="projects.html#nexlify-shop"><i class="fa-solid fa-shop" aria-hidden="true"></i><span class="nav-title">Nexlify Shop</span><span class="nav-desc">AI marketplace</span></a></li>
+              <li role="none"><a role="menuitem" href="projects.html#chopsmo"><i class="fa-solid fa-utensils" aria-hidden="true"></i><span class="nav-title">ChopSmo</span><span class="nav-desc">Kitchen automation</span></a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-sub">
+            <button class="sub-toggle" aria-expanded="false" aria-controls="sub-team">Team <span class="chev" aria-hidden="true">▾</span></button>
+            <ul id="sub-team" class="sub-menu" role="menu" aria-hidden="true">
+              <li role="none"><a role="menuitem" href="team.html"><i class="fa-solid fa-users" aria-hidden="true"></i><span class="nav-title">Meet the team</span><span class="nav-desc">Engineers & designers</span></a></li>
+              <li role="none"><a role="menuitem" href="team.html#careers"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span class="nav-title">Join us</span><span class="nav-desc">Open roles</span></a></li>
+            </ul>
+          </li>
+
+          <li><a class="nav-link" href="contact.html"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="nav-title">Contact</span><span class="nav-desc">Get in touch</span></a></li>
         </ul>
+        <div class="nav-divider" aria-hidden="true"></div>
+        <div class="nav-footer">
+          <div class="nav-contact">Email us: <a href="mailto:hello@nexlifytech.site">hello@nexlifytech.site</a></div>
+          <div class="nav-social">
+            <a href="#" aria-label="Twitter" class="social-link"><i class="fa-brands fa-x"></i></a>
+            <a href="#" aria-label="LinkedIn" class="social-link"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -131,54 +162,6 @@
   <button id="scrollToTop" class="scroll-to-top" aria-label="Back to top">↑</button>
 
   <script>
-    // Mobile nav toggle — accessible dropdown with outside-click and Escape-to-close
-    (function(){
-      const btn = document.getElementById('navToggle');
-      const nav = document.getElementById('primary-nav');
-      if (!btn || !nav) return;
-
-      // Initialize ARIA state
-      btn.setAttribute('aria-expanded', 'false');
-      nav.classList.remove('open');
-      nav.setAttribute('aria-hidden', 'true');
-
-      const openNav = ()=>{
-        btn.setAttribute('aria-expanded', 'true');
-        nav.classList.add('open');
-        nav.setAttribute('aria-hidden', 'false');
-      };
-      const closeNav = ()=>{
-        btn.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('open');
-        nav.setAttribute('aria-hidden', 'true');
-      };
-
-      btn.addEventListener('click', (e)=>{
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        if (expanded) closeNav(); else openNav();
-      });
-
-      // Close when clicking outside the nav
-      document.addEventListener('click', (e)=>{
-        if (!nav.classList.contains('open')) return;
-        const withinNav = nav.contains(e.target) || btn.contains(e.target);
-        if (!withinNav) closeNav();
-      });
-
-      // Close on Escape
-      document.addEventListener('keydown', (e)=>{
-        if (e.key === 'Escape' && nav.classList.contains('open')) closeNav();
-      });
-
-      // Close nav when focus moves far away (optional)
-      nav.addEventListener('focusout', (e)=>{
-        // If the newly focused element is outside nav and not the toggle, close
-        const related = e.relatedTarget;
-        if (!related) return;
-        if (!nav.contains(related) && !btn.contains(related)) closeNav();
-      });
-    })();
-
     // Scroll to top visibility
     (function(){
       const btn=document.getElementById('scrollToTop');
@@ -200,6 +183,8 @@
     })();
   </script>
 
+  <script src="js/nav.js"></script>
   <script src="js/profile-system.js"></script>
+  <script src="js/header.js"></script>
 </body>
 </html>
