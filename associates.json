@@ -2,29 +2,111 @@
   {
     "name": "Njoya Medin Praise Alambi",
     "role": "Full stack developer / CEO",
-    "bio": "I'm a passionate and driven tech enthusiast with a sharp eye for innovation and a love for building solutions that make an impact. I specialize in software development, creative problem-solving, and turning bold ideas into real-world products. Whether it's collaborating on startup projects or pushing boundaries in the digital space, I'm always striving to grow, create, and disrupt the ordinary.",
-  "photo": "assets/Njoya.jpg",
-    "linkedin": "https://www.linkedin.com/in/njoya-perfect-7b6791357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "bio": "I'm a passionate and driven tech enthusiast with a sharp eye for innovation and a love for building solutions that make an impact. I specialize in software development, creative problem-solving, and turning bold ideas into real-world products. I lead engineering and product strategy, mentoring teams to deliver scalable systems, and I enjoy working across the stack — from APIs and databases to accessible frontends. Outside work I contribute to open-source and enjoy technical writing.",
+    "photo": "assets/Njoya.jpg",
+    "skills": ["JavaScript", "Node.js", "React", "Postgres", "DevOps"],
+    "years_experience": 8,
+    "university": "University of Buea",
+    "linkedin": "https://www.linkedin.com/in/njoya-perfect-7b6791357",
     "whatsapp": "https://wa.me/237683821011",
-    "x": "https://x.com/NjoyaPerfect?t=28DRfPW9LHM4RsIVAGicdw&s=08"
+    "x": "https://x.com/NjoyaPerfect"
   },
   {
     "name": "Ngeminang Precious",
     "role": "COO (Chief Operating Officer) / Backend Developer",
-    "bio": "I'm a passionate and driven tech enthusiast with a sharp eye for innovation and a love for building solutions that make an impact. I specialize in software development, creative problem-solving, and turning bold ideas into real-world products. Whether it's collaborating on startup projects or pushing boundaries in the digital space, I'm always striving to grow, create, and disrupt the ordinary.",
-  "photo": "assets/avatar.png",
-    "linkedin": "https://www.linkedin.com/in/ngeminang-precious-6b907133b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "bio": "Backend engineer focused on reliable systems, integrations and data workflows. I design APIs, build resilient services, and ensure observability and security across production systems. I enjoy mentoring engineers and improving team delivery through pragmatic engineering practices.",
+    "photo": "assets/nexlify-logo.jpg",
+    "skills": ["Go", "Python", "Postgres", "Message Queues", "Kubernetes"],
+    "years_experience": 6,
+    "university": "University of Yaoundé I",
+    "linkedin": "https://www.linkedin.com/in/ngeminang-precious-6b907133b",
     "whatsapp": "https://wa.me/237673398100",
     "x": "https://x.com/associate-handle"
   },
   {
     "name": "Beri Pamela Mengnjoh",
-    "role": "CMO (Chief Marketing Officer) / Technical analyst and research specialist",
-    "bio": "I'm a passionate and driven tech enthusiast with a sharp eye for innovation and a love for building solutions that make an impact. I specialize in software development, creative problem-solving, and turning bold ideas into real-world products. Whether it's collaborating on startup projects or pushing boundaries in the digital space, I'm always striving to grow, create, and disrupt the ordinary.",
-  "photo": "assets/Pamela.jpg",
-    "linkedin": "https://www.linkedin.com/in/mengnjoh-beri-b56b2a220?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    "role": "CMO (Chief Marketing Officer) / UI/UX Designer, frontend developer",
+    "bio": "Product and design leader crafting usable, delightful interfaces. I combine user research, interaction design and frontend engineering to ship polished products. My work focuses on creating clear journeys that convert and delight customers while keeping accessibility and performance in mind.",
+    "photo": "assets/Pamela.jpg",
+    "skills": ["UI/UX", "Figma", "HTML/CSS", "Accessibility", "Design Systems"],
+    "years_experience": 7,
+    "university": "University of Douala",
+    "linkedin": "https://www.linkedin.com/in/mengnjoh-beri-b56b2a220",
     "whatsapp": "https://wa.me/654579988",
     "x": "https://x.com/associate-handle"
+  },
+  {
+    "name": "Che Hermaan Bright",
+    "role": "CTO (Chief Technology Officer) / Technical analyst and research specialist",
+    "bio": "A results-driven software engineer with a strong foundation in frontend and systems thinking. I help teams design scalable architectures and translate product goals into engineering roadmaps. My interests include performance optimization, distributed systems, and developer experience.",
+    "photo": "assets/Bright.jpg",
+    "skills": ["Systems Design", "TypeScript", "React", "Observability", "Cloud"],
+    "years_experience": 9,
+    "university": "University of Bamenda",
+    "linkedin": "https://www.linkedin.com/in/hermann-bright-5ba856295",
+    "whatsapp": "https://wa.me/673028191",
+    "x": "https://x.com/associate-handle"
   }
-
 ]
+[
+  {
+    "name": "Njoya Medin Praise ",
+    "bio": "I'm a passionate and driven tech enthusiast with a sharp eye for innovation and a love for building solutions that make an impact. I specialize in software development, creative problem-solving, and turning bold ideas into real-world products. I lead engineering and product strategy, mentoring teams to deliver scalable systems, and I enjoy working across the stack — from APIs and databases to accessible frontends. Outside work I contribute to open-source and enjoy technical writing.",
+  "photo": "assets/Njoya.jpg",
+  "skills": ["JavaScript","Node.js","React","Postgres","DevOps"],
+  "years_experience": 8,
+  "university": "University of Buea",
+  "photo": "assets/Njoya.jpg",
+    "linkedin": "https://www.linkedin.com/in/njoya-perfect-7b6791357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "whatsapp": "https://wa.me/237683821011",
+    "x": "https://x.com/NjoyaPerfect?t=28DRfPW9LHM4RsIVAGicdw&s=08"
+  [
+    {
+      "name": "Njoya Medin Praise Alambi",
+      "role": "Full stack developer / CEO",
+      "bio": "I'm a passionate and driven tech enthusiast with a sharp eye for innovation and a love for building solutions that make an impact. I specialize in software development, creative problem-solving, and turning bold ideas into real-world products. I lead engineering and product strategy, mentoring teams to deliver scalable systems, and I enjoy working across the stack — from APIs and databases to accessible frontends. Outside work I contribute to open-source and enjoy technical writing.",
+      "photo": "assets/Njoya.jpg",
+      "skills": ["JavaScript", "Node.js", "React", "Postgres", "DevOps"],
+      "years_experience": 8,
+      "university": "University of Buea",
+      "linkedin": "https://www.linkedin.com/in/njoya-perfect-7b6791357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      "whatsapp": "https://wa.me/237683821011",
+      "x": "https://x.com/NjoyaPerfect?t=28DRfPW9LHM4RsIVAGicdw&s=08"
+    },
+    {
+      "name": "Ngeminang Precious",
+      "role": "COO (Chief Operating Officer) / Backend Developer",
+      "bio": "Backend engineer focused on reliable systems, integrations and data workflows. I design APIs, build resilient services, and ensure observability and security across production systems. I enjoy mentoring engineers and improving team delivery through pragmatic engineering practices.",
+      "photo": "assets/nexlify-logo.jpg",
+      "skills": ["Go", "Python", "Postgres", "Message Queues", "Kubernetes"],
+      "years_experience": 6,
+      "university": "University of Yaoundé I",
+      "linkedin": "https://www.linkedin.com/in/ngeminang-precious-6b907133b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      "whatsapp": "https://wa.me/237673398100",
+      "x": "https://x.com/associate-handle"
+    },
+    {
+      "name": "Beri Pamela Mengnjoh",
+      "role": "CMO (Chief Marketing Officer) / UI/UX Designer, frontend developer",
+      "bio": "Product and design leader crafting usable, delightful interfaces. I combine user research, interaction design and frontend engineering to ship polished products. My work focuses on creating clear journeys that convert and delight customers while keeping accessibility and performance in mind.",
+      "photo": "assets/Pamela.jpg",
+      "skills": ["UI/UX", "Figma", "HTML/CSS", "Accessibility", "Design Systems"],
+      "years_experience": 7,
+      "university": "University of Douala",
+      "linkedin": "https://www.linkedin.com/in/mengnjoh-beri-b56b2a220?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      "whatsapp": "https://wa.me/654579988",
+      "x": "https://x.com/associate-handle"
+    },
+    {
+      "name": "Che Hermaan Bright",
+      "role": "CTO (Chief Technology Officer) / Technical analyst and research specialist",
+      "bio": "A results-driven software engineer with a strong foundation in frontend and systems thinking. I help teams design scalable architectures and translate product goals into engineering roadmaps. My interests include performance optimization, distributed systems, and developer experience.",
+      "photo": "assets/Bright.jpg",
+      "skills": ["Systems Design", "TypeScript", "React", "Observability", "Cloud"],
+      "years_experience": 9,
+      "university": "University of Bamenda",
+      "linkedin": "https://www.linkedin.com/in/hermann-bright-5ba856295?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      "whatsapp": "https://wa.me/673028191",
+      "x": "https://x.com/associate-handle"
+    }
+  ]

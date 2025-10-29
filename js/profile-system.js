@@ -68,6 +68,8 @@ class ProfileManager {
         // Support multiple possible container IDs used across templates
         this.displayInHomepage();
         this.displayInElementId('team-members');
+        // Attach bio toggles after rendering
+        this.attachBioToggles();
     }
 
     /**
@@ -122,21 +124,62 @@ class ProfileManager {
         // Use provided photo path directly (associates.json uses assets/*),
         // and fall back to a known avatar in the assets folder.
         const photoSrc = associate.photo ? `${associate.photo}` : 'assets/avatar.png';
+        const skillsHtml = Array.isArray(associate.skills) && associate.skills.length ? `<div class="member-skills">${associate.skills.map(s=>`<span class="skill-tag">${s}</span>`).join('')}</div>` : '';
+        const uni = associate.university ? `<div class="member-meta"><strong>University:</strong> ${associate.university}</div>` : '';
+        const yrs = (typeof associate.years_experience !== 'undefined') ? `<div class="member-meta"><strong>Experience:</strong> ${associate.years_experience} yrs</div>` : '';
+
         return `
             <div class="team-member-card">
                 <div class="member-photo-wrap">
-                    <img src="${photoSrc}" alt="${associate.name}" class="member-photo" onerror="this.src='assets/avatar.png'">
+                    <img src="${photoSrc}" alt="${associate.name}" class="member-photo large" onerror="this.src='assets/avatar.png'">
                 </div>
 
                 <h3 class="member-name">${associate.name}</h3>
-                <p class="member-role">${associate.role}</p>
-                <p class="member-bio">${associate.bio || ''}</p>
+                <p class="member-role">${associate.role || ''}</p>
+
+                <div class="bio-wrap">
+                  <p class="member-bio clamp-6">${associate.bio || ''}</p>
+                  <button class="bio-toggle" aria-expanded="false">See more</button>
+                </div>
+
+                ${skillsHtml}
+                ${uni}
+                ${yrs}
 
                 <div class="social-links" aria-label="social links">
                     ${this.generateSocialLinks(associate)}
                 </div>
             </div>
         `;
+    }
+
+    /**
+     * Attach click handlers for bio 'See more' toggles
+     */
+    attachBioToggles(){
+        // delegate to existing DOM nodes — support multiple containers
+        const buttons = Array.from(document.querySelectorAll('.bio-toggle'));
+        buttons.forEach(btn => {
+            // avoid double-binding
+            if (btn.__bound) return; btn.__bound = true;
+            const wrap = btn.closest('.bio-wrap');
+            if (!wrap) return;
+            const para = wrap.querySelector('.member-bio');
+            btn.addEventListener('click', (e)=>{
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                if (expanded){
+                    para.classList.add('clamp-6');
+                    para.classList.remove('expanded');
+                    btn.setAttribute('aria-expanded','false');
+                    btn.textContent = 'See more';
+                } else {
+                    para.classList.remove('clamp-6');
+                    para.classList.add('expanded');
+                    btn.setAttribute('aria-expanded','true');
+                    btn.textContent = 'See less';
+                }
+            });
+        });
     }
 
     /**
